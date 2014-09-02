@@ -1,4 +1,6 @@
 ifi-native-dsd
 ==============
 
-iFi audio native DSD support on Linux
+Placeholder for iFi Audio native DSD support on Linux.
+Will support native DSD playback on recent iFi Audio device like the micro iDSD.
+
