@@ -12,4 +12,14 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 
 [05-sep-14]
 - Patches have been sent to the ALSA development list for inclusion in the kernel
+[08-sep-14]
+- Kernel patches accepted and queued for upstream
+[10-sep-14]
+- Patch for ALSA lib for DSD_U32_LE support sent to ALSA development list
+
+Planned support:
+- Modified aplay to test with DSDIFF files
+- Python test scripts
+- MPD support (0.18-dsd)
+
 
