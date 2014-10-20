@@ -18,8 +18,7 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 - Patch for ALSA lib for DSD_U32_LE support sent to ALSA development list
 
 Planned support:
-- Modified aplay to test with DSDIFF files
 - Python test scripts
-- MPD support (0.18-dsd)
+- MPD support (0.18-dsd). Done, see [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
 
