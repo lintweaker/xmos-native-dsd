@@ -21,7 +21,7 @@ Support:
 - Python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
 - MPD support (0.18-dsd). See [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
-# Native DSD support for XMOS based devices
+## Native DSD support for XMOS based devices
 XMOS based USB DACs and converters can support native DSD playback using a
 32-bit sample format. DACs that supporting this feature expose it using a USB interface Alternate Setting.
 
@@ -29,15 +29,21 @@ On Windows systems this feature can be used with a ASIO 2.1/2.2 driver from the 
 
 I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed quirks to support it for a few XMOS based USB DACs/boards.
 
-# Test if you have a supported device
+## Test if you have a supported device
+Currently only devices with USB ID `20b1:3008` and USB ID `20b1:2009` are supported. This are devices from iFi Audio/AMR and DIYINHK. If you think you have a (XMOS based) DAC device or converter that should support native DSD playback please contact me.
 
+To check if your device is supported, or at least XMOS based(*), use the following command:
 
-# HOWTO
+`lsusb -d 20b1:`. For the iFi Audio nano and micro iDSD it reports:
+`Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device number may vary).
+
+*(*) Some manufactures using the XMOS chip use their own vendor id instead of XMOS.*
+## HOWTO
 1. Use pre-compiled binaries
 2. Build the RPMs yourself
 3. Patch and build from source
 
-## 1. Use pre-compiled binaries
+### 1. Use pre-compiled binaries
 Pre-compiled binaries are provided for Fedora 20 x86_64. Before installing them,
 make sure your Fedora installation is fully up-to-date.
 
@@ -84,7 +90,7 @@ Now configure mpd (/etc/mpd.conf) to your liking and add the following statement
 
 
 
-## 2. Build the RPMs yourself
+### 2. Build the RPMs yourself
 
-## 3. Patch and build from source
+### 3. Patch and build from source
 
