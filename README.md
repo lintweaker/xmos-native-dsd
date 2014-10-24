@@ -34,12 +34,19 @@ Currently only devices with USB ID `20b1:3008` and USB ID `20b1:2009` are suppor
 
 To check if your device is supported, or at least XMOS based(1), use the following command:
 
-`lsusb -d 20b1:`.
+`lsusb -d 20b1:`
 
 For the iFi Audio nano and micro iDSD it reports:
 `Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device number may vary).
 
-*(1) Some manufactures using the XMOS chip use their own vendor id instead of XMOS.*
+*(1) Some manufacturers using the XMOS chip use their own vendor id instead of XMOS.*
+
+If your device is supported, skip to the HOWTO section.
+
+### Support for your XMOS based device?
+
+If your device is XMOS based but not currently supported, the next step is to see if your devices has an *Alternate Setting*
+
 
 ## HOWTO
 1. Use pre-compiled binaries
