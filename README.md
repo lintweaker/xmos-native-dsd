@@ -147,17 +147,26 @@ Build ALSA lib:
 
 - Make sure the needed dependencies are installed:
   `sudo yum-builddep alsa-lib-1.0.27.2-2.fc20.src.rpm`
+
 - Install it (as normal user):
+
   `sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.src.rpm`
+
 - Build it (as normal user):
+
 ``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``
 
 Build MPD:
 - Make sure the needed dependencies are installed:
+
   `sudo yum-builddep mpd-0.18.16-1.fc20.src.rpm`
+
 - Install it (as normal user):
+
   `sudo rpm -ivh mpd-0.18.16-1.fc20.src.rpm`
+
 - Build it:
+
 ``rpmbuild -bb --target=`uname -m` mpd.spec``
 
 Install the created RPMs using HOWTO step 1 above.
