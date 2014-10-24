@@ -146,5 +146,7 @@ Build MPD:
 
 ``rpmbuild -bb --target=`uname -m` mpd.spec``
 
+Install the created RPMs using HOWTO step 1 above.
+
 ### 3. Patch and build from source
 
