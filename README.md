@@ -35,4 +35,54 @@ I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) t
 2. Build the RPMs yourself
 3. Patch and build from source
 
+## 1. Use pre-compiled binaries
+Pre-compiled binaries are provided for Fedora 20 x86_64. Before installing them,
+make sure your Fedora installation is fully up-to-date.
+
+Prequisites:
+- rpmfusion repo added and enabled (rpmfusion-free should be sufficient)
+
+Steps:
+- clone this repo
+- Install the RPMS from the RPMS directory
+
+Start with the kernel:
+`sudo yum localinstall kernel-3.16.6-202.jk17.fc20.x86_64.rpm`
+
+If needed, also install the kernel-headers and kernel-devel packages.
+
+Replace ALSA, the current ALSA needs to be replaced due to the many
+dependencies.
+
+`sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.x86_64.rpm --force'
+
+If needed, install the alsa-devel package as well.
+
+Install/update MPD:
+
+`sudo yum localinstall mpd-0.18.16-1.fc20.x86_64.rpm`
+
+With the rpmfusion repo enabled any needed library will be installed.
+
+As a final installation step, reboot.
+After the reboot make sure you are running the new kernel:
+`uname -r` should report `3.16.6-202.jk17.fc20.x86_64`.
+
+Now configure mpd (/etc/mpd.conf) to your liking and add the following statements to the audio section, e.g.:
+
+`audio_output {
+	type	"alsa"
+	name	"iFi Audio micro iDSD"
+	device	"hw:1,0"
+	# Enable native DSD playback
+	dsd_native	"yes"
+	# Select 32-bit DSD_U32_LE output format
+	dsd_native_type	"2"
+}`
+
+
+
+## 2. Build the RPMs yourself
+
+## 3. Patch and build from source
 
