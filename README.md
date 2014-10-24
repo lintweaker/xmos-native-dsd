@@ -58,6 +58,7 @@ Steps:
 - Install the RPMS from the RPMS directory
 
 Start with the kernel:
+
 `sudo yum localinstall kernel-3.16.6-202.jk17.fc20.x86_64.rpm`
 
 If needed, also install the *kernel-headers* and *kernel-devel* packages.
@@ -67,19 +68,19 @@ dependencies.
 
 `sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.x86_64.rpm --force`
 
-If needed, install the alsa-devel package as well.
+If needed, install the *alsa-devel* package as well.
 
 Install/update MPD:
 
 `sudo yum localinstall mpd-0.18.16-1.fc20.x86_64.rpm`
 
-With the rpmfusion repo enabled any needed library will be installed.
+With the rpmfusion repo enabled any missing library will be installed as dependency.
 
-As a final installation step, reboot.
+As a final installation step, reboot.the machine.
 After the reboot make sure you are running the new kernel:
 `uname -r` should report `3.16.6-202.jk17.fc20.x86_64`.
 
-Now configure mpd (/etc/mpd.conf) to your liking and add the statements with "dsd_native" to the audio section, e.g.:
+Now configure mpd (*/etc/mpd.conf*) to your liking and add the statements with "dsd_native" to the audio section, e.g.:
 
 *audio_output {<br>
 &nbsp;&nbsp;type&nbsp;"alsa"<br>
@@ -91,7 +92,7 @@ Now configure mpd (/etc/mpd.conf) to your liking and add the statements with "ds
 &nbsp;&nbsp;dsd_native_type&nbsp;"2"<br>
 }*<br>
 
-
+Nb if you have DSD over PCM (DoP) enabled with "dsd_usb" "yes", disable it with "dsd_usb" "no".
 
 ### 2. Build the RPMs yourself
 
