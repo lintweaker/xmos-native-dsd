@@ -101,13 +101,13 @@ To verify that native DSD playback actually works, play back a DSD file using ei
 Example for a DSD64 file:
 
 cat /proc/asound/Audio/pcm0p/sub0/hw_params
-access: MMAP_INTERLEAVED
-format: DSD_U32_LE
-subformat: STD
-channels: 2
-rate: 88200 (88200/1)
-period_size: 11025
-buffer_size: 44100
+access: MMAP_INTERLEAVED<br>
+format: DSD_U32_LE<br>
+subformat: STD<br>
+channels: 2<br>
+rate: 88200 (88200/1)<br>
+period_size: 11025<br>
+buffer_size: 44100<br>
 
 Notice the DSD_U32_LE sample format and rate of 88200.
 
