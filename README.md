@@ -13,6 +13,7 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 #### ALSA support status:
 - New DSD sample format accepted, code resides in ALSA development git
 - Will be generally available with the next ALSA lib update
+
 #### Kernel support status:
 - Kernel 3.18rc1 contains the needed new sample format support
 - Kernel 3.18rc1 supports the iFi Audio and DIYINKHK devices
