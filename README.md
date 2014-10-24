@@ -136,7 +136,7 @@ Build the kernel:
   `cp SPECS/kernel.spec ~/rpmbuild/SPECS`
 - Build the kernel, e.g.:
 
-  `rpmbuild -bb --without debug --without perf --without debuginfo --target=``uname -m`` kernel.spec`
+  ``rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m`  kernel.spec``
 
 
 
