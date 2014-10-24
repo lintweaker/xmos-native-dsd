@@ -129,11 +129,14 @@ Build the kernel:
 - Install it (as normal user).
   `rpm -ivh <kernel-source-rpm>`
 - Copy the needed patches from this repo to the SOURCES directory
+
   `cp SRPMS/patches/* ~/rpmbuild/SOURCES`
 - Replace the SPEC file:
+
   `cp SPECS/kernel.spec ~/rpmbuild/SPECS`
 - Build the kernel, e.g.:
-  `rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m` kernel.spec`
+
+  `rpmbuild -bb --without debug --without perf --without debuginfo --target=``uname -m`` kernel.spec`
 
 
 
