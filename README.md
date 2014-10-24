@@ -94,6 +94,23 @@ Now configure mpd (*/etc/mpd.conf*) to your liking and add the statements with "
 
 Nb if you have DSD over PCM (DoP) enabled with "dsd_usb" "yes", disable it with "dsd_usb" "no".
 
+#### Verifify that is works
+
+To verify that native DSD playback actually works, play back a DSD file using either MPD or the playdsd.py python script and check the 'hw_params' file for your ALSA audio device.
+
+Example for a DSD64 file:
+
+cat /proc/asound/Audio/pcm0p/sub0/hw_params
+access: MMAP_INTERLEAVED
+format: DSD_U32_LE
+subformat: STD
+channels: 2
+rate: 88200 (88200/1)
+period_size: 11025
+buffer_size: 44100
+
+Notice the DSD_U32_LE sample format and rate of 88200.
+
 ### 2. Build the RPMs yourself
 
 ### 3. Patch and build from source
