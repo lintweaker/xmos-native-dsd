@@ -27,7 +27,9 @@ XMOS based USB DACs and converters can support native DSD playback using a
 
 On Windows systems this feature can be used with a ASIO 2.1/2.2 driver from the DAC manufacturer.
 
-I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux.
+I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed quirks to support it for a few XMOS based USB DACs/boards.
+
+# Test if you have a supported device
 
 
 # HOWTO
