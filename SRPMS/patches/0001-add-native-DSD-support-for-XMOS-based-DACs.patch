@@ -1,0 +1,51 @@
+From e10f9c94039da2f5a488342c32f876ea051dc40e Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Fri, 5 Sep 2014 17:41:44 +0200
+Subject: [PATCH] add native DSD support for XMOS based DACs
+
+Add quirks for XMOS based DACs for native DSD playback support using the new
+DSD_U32_LE sample format.
+
+This version adds native DSD support for:
+- iFi Audio micro iDSD/nano iDSD (they use the same prod. id)
+- DIYINHK USB to I2S/DSD converter
+
+Changes from v2:
+- fix and simplify switch statement
+Changes from v1:
+- use specific product id and alt setting per XMOS based device
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 19a921e..bd5a95e 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1174,5 +1174,21 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 		}
+ 	}
+ 
++	/* XMOS based USB DACs */
++	switch(chip->usb_id) {
++	/* iFi Audio micro/nano iDSD */
++	case USB_ID(0x20b1, 0x3008):
++		if (fp->altsetting == 2)
++			return SNDRV_PCM_FMTBIT_DSD_U32_LE;
++		break;
++	/* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
++	case USB_ID(0x20b1, 0x2009):
++		if (fp->altsetting == 3)
++			return SNDRV_PCM_FMTBIT_DSD_U32_LE;
++		break;
++	default:
++		break;
++	}
++
+ 	return 0;
+ }
+-- 
+1.9.3
+
