@@ -100,7 +100,7 @@ To verify that native DSD playback actually works, play back a DSD file using ei
 
 Example for a DSD64 file:
 
-cat /proc/asound/Audio/pcm0p/sub0/hw_params
+cat /proc/asound/Audio/pcm0p/sub0/hw_params<br>
 access: MMAP_INTERLEAVED<br>
 format: DSD_U32_LE<br>
 subformat: STD<br>
@@ -112,6 +112,30 @@ buffer_size: 44100<br>
 Notice the DSD_U32_LE sample format and rate of 88200.
 
 ### 2. Build the RPMs yourself
+
+These instructions are tested on Fedora 20 x86_64.
+
+General prerequisites:
+- System prepared for rpm building, [Fedora build a custom kernel] (https://fedoraproject.org/wiki/Building_a_custom_kernel)
+
+Prerequisites for building MPD:
+- rpmfusion repo added and enabled (rpmfusion-free should be sufficient)
+
+Prepare:
+- clone this repo
+
+Build the kernel:
+- Download the required kernel source RPM from [koji] (http://koji.fedoraproject.org/koji/)
+- Install it (as normal user).
+  `rpm -ivh <kernel-source-rpm>`
+- Copy the needed patches from this repo to the SOURCES directory
+  `cp SRPMS/patches/* ~/rpmbuild/SOURCES`
+- Replace the SPEC file:
+  `cp SPECS/kernel.spec ~/rpmbuild/SPECS`
+- Build the kernel, e.g.:
+  `rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m` kernel.spec`
+
+
 
 ### 3. Patch and build from source
 
