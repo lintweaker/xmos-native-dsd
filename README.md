@@ -71,13 +71,13 @@ After the reboot make sure you are running the new kernel:
 Now configure mpd (/etc/mpd.conf) to your liking and add the following statements to the audio section, e.g.:
 
 audio_output {<br>
-&nbsp;type	"alsa"<br>
-&nbsp;	name	"iFi Audio micro iDSD"<br>
-	device	"hw:1,0"<br>
-	# Enable native DSD playback<br>
-	dsd_native	"yes"<br>
-	# Select 32-bit DSD_U32_LE output format<br>
-	dsd_native_type	"2"<br>
+&nbsp;type&nbsp;"alsa"<br>
+&nbsp;name&nbsp;"iFi Audio micro iDSD"<br>
+&nbsp;device&nbsp;"hw:1,0"<br>
+&nbsp;# Enable native DSD playback<br>
+&nbsp;dsd_native&nbsp;"yes"<br>
+&nbsp;# Select 32-bit DSD_U32_LE output format<br>
+&nbsp;dsd_native_type&nbsp;"2"<br>
 }<br>
 
 
