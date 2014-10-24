@@ -17,9 +17,9 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 [10-sep-14]
 - Patch for ALSA lib for DSD_U32_LE support sent to ALSA development list
 
-Planned support:
-- Python test scripts
-- MPD support (0.18-dsd). Done, see [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
+Support:
+- Python scripts
+- MPD support (0.18-dsd). See [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
 # Native DSD support for XMOS based devices
 XMOS based USB DACs and converters can support native DSD playback using a
@@ -71,7 +71,7 @@ After the reboot make sure you are running the new kernel:
 Now configure mpd (/etc/mpd.conf) to your liking and add the following statements to the audio section, e.g.:
 
 `audio_output {
-	type	"alsa"
+	type	"alsa"<BR>
 	name	"iFi Audio micro iDSD"
 	device	"hw:1,0"
 	# Enable native DSD playback
