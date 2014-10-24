@@ -125,7 +125,7 @@ Prepare:
 - clone this repo
 
 Build the kernel:
-- Download the required kernel source RPM from [koji] (http://koji.fedoraproject.org/koji/)
+- Download the required kernel source RPM from [koji] (http://koji.fedoraproject.org/koji/packageinfo?packageID=8)
 - Install it (as normal user).
   `rpm -ivh <kernel-source-rpm>`
 - Copy the needed patches from this repo to the SOURCES directory
@@ -138,7 +138,13 @@ Build the kernel:
 
   ``rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m`  kernel.spec``
 
+Build ALSA lib:
 
+``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``
+
+Build MPD:
+
+``rpmbuild -bb --target=`uname -m` mpd.spec``
 
 ### 3. Patch and build from source
 
