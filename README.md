@@ -1,3 +1,6 @@
+Linux native DSD playback support
+=================================
+
 ## Native DSD support for XMOS based devices
 XMOS based USB DACs and converters can support native DSD playback using a
 32-bit sample format. DACs that supporting this feature expose it using a USB interface Alternate Setting.
