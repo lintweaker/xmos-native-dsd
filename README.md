@@ -1,7 +1,10 @@
-xmos-native-dsd
-==============
+## Native DSD support for XMOS based devices
+XMOS based USB DACs and converters can support native DSD playback using a
+32-bit sample format. DACs that supporting this feature expose it using a USB interface Alternate Setting.
 
-Linux support for native DSD playback on XMOS based DSD DACs and converters with native DSD support.
+On Windows systems this feature can be used with a ASIO 2.1/2.2 driver from the DAC manufacturer.
+
+I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed quirks to support it for a few XMOS based USB DACs/boards.
 
 Currently supports native DSD playback on the following XMOS based DACs/USB converters:
 
@@ -22,13 +25,6 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 - My python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
 - MPD support (0.18-dsd). See [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
-## Native DSD support for XMOS based devices
-XMOS based USB DACs and converters can support native DSD playback using a
-32-bit sample format. DACs that supporting this feature expose it using a USB interface Alternate Setting.
-
-On Windows systems this feature can be used with a ASIO 2.1/2.2 driver from the DAC manufacturer.
-
-I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed quirks to support it for a few XMOS based USB DACs/boards.
 
 ## Test if you have a supported device
 Currently only devices with USB ID `20b1:3008` and USB ID `20b1:2009` are supported. This are devices from iFi Audio/AMR and DIYINHK. If you think you have a (XMOS based) DAC device or converter that should support native DSD playback please contact me.
