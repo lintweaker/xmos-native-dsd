@@ -50,7 +50,7 @@ For the iFi Audio nano and micro iDSD it reports:
 Pre-compiled binaries are provided for Fedora 20 x86_64. Before installing them,
 make sure your Fedora installation is fully up-to-date.
 
-Prequisites:
+Prerequisites:
 - rpmfusion repo added and enabled (rpmfusion-free should be sufficient)
 
 Steps:
@@ -60,7 +60,7 @@ Steps:
 Start with the kernel:
 `sudo yum localinstall kernel-3.16.6-202.jk17.fc20.x86_64.rpm`
 
-If needed, also install the kernel-headers and kernel-devel packages.
+If needed, also install the *kernel-headers* and *kernel-devel* packages.
 
 Replace ALSA, the current ALSA needs to be replaced due to the many
 dependencies.
