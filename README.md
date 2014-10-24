@@ -32,12 +32,12 @@ I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) t
 ## Test if you have a supported device
 Currently only devices with USB ID `20b1:3008` and USB ID `20b1:2009` are supported. This are devices from iFi Audio/AMR and DIYINHK. If you think you have a (XMOS based) DAC device or converter that should support native DSD playback please contact me.
 
-To check if your device is supported, or at least XMOS based(*), use the following command:
+To check if your device is supported, or at least XMOS based(1), use the following command:
 
 `lsusb -d 20b1:`. For the iFi Audio nano and micro iDSD it reports:
 `Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device number may vary).
 
-*(*) Some manufactures using the XMOS chip use their own vendor id instead of XMOS.*
+*(1) Some manufactures using the XMOS chip use their own vendor id instead of XMOS.*
 ## HOWTO
 1. Use pre-compiled binaries
 2. Build the RPMs yourself
