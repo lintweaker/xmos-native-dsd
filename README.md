@@ -41,13 +41,6 @@ For the iFi Audio nano and micro iDSD it reports:
 
 *(1) Some manufacturers using the XMOS chip use their own vendor id instead of XMOS.*
 
-If your device is supported, skip to the HOWTO section.
-
-### Support for your XMOS based device?
-
-If your device is XMOS based but not currently supported, the next step is to see if your devices has an *Alternate Setting*
-
-
 ## HOWTO
 1. Use pre-compiled binaries
 2. Build the RPMs yourself
