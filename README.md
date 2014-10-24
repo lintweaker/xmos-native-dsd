@@ -10,15 +10,15 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 - DIYINHK USB to I2S/DSD converter [max DSD128]
 - ..more to follow
 
-[05-sep-14]
-- Patches have been sent to the ALSA development list for inclusion in the kernel
-[08-sep-14]
-- Kernel patches accepted and queued for upstream
-[10-sep-14]
-- Patch for ALSA lib for DSD_U32_LE support sent to ALSA development list
+#### ALSA support status:
+- New DSD sample format accepted, code resides in ALSA development git
+- Will be generally available with the next ALSA lib update
+#### Kernel support status:
+- Kernel 3.18rc1 contains the needed new sample format support
+- Kernel 3.18rc1 supports the iFi Audio and DIYINKHK devices
 
-Support:
-- Python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
+#### Linux Playback support:
+- My python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
 - MPD support (0.18-dsd). See [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
 ## Native DSD support for XMOS based devices
