@@ -86,16 +86,16 @@ As a final installation step, reboot.
 After the reboot make sure you are running the new kernel:
 `uname -r` should report `3.16.6-202.jk17.fc20.x86_64`.
 
-Now configure mpd (/etc/mpd.conf) to your liking and add the following statements **in bold** to the audio section, e.g.:
+Now configure mpd (/etc/mpd.conf) to your liking and add the statements with "dsd_native" to the audio section, e.g.:
 
 *audio_output {<br>
 &nbsp;&nbsp;type&nbsp;"alsa"<br>
 &nbsp;&nbsp;name&nbsp;"iFi Audio micro iDSD"<br>
 &nbsp;&nbsp;device&nbsp;"hw:1,0"<br>
 &nbsp;&nbsp;# Enable native DSD playback<br>
-&nbsp;&nbsp;**dsd_native&nbsp;"yes"**<br>
+&nbsp;&nbsp;dsd_native&nbsp;"yes"<br>
 &nbsp;&nbsp;# Select 32-bit DSD_U32_LE output format<br>
-&nbsp;&nbsp;**dsd_native_type&nbsp;"2"**<br>
+&nbsp;&nbsp;dsd_native_type&nbsp;"2"<br>
 }*<br>
 
 
