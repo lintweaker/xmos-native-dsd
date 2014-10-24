@@ -54,7 +54,7 @@ If needed, also install the kernel-headers and kernel-devel packages.
 Replace ALSA, the current ALSA needs to be replaced due to the many
 dependencies.
 
-`sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.x86_64.rpm --force'
+`sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.x86_64.rpm --force`
 
 If needed, install the alsa-devel package as well.
 
