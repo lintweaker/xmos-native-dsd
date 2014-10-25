@@ -201,7 +201,8 @@ Compile and install the kernel as per instructions for your Linux distribution.
 
 #### ALSA lib
 The provided ALSA patches are for ALSA lib version 1.0.27.2.<br>
-Download the ALSA lib 1.0.27.2 sources from [alsa-lib] (ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.27.2.tar.bz2)<br>
+Download the ALSA lib 1.0.27.2 sources from [alsa-lib] (ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.27.2.tar.bz2)
+
 Unpack and enter the alsa-lib-1.0.27.2 directory. Apply the patches:
 
 `patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Fix-DSD-formats-userland-usability.patch --dry-run`<br>
