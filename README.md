@@ -3,13 +3,13 @@ Linux native DSD playback support
 
 ## Native DSD support for XMOS based devices
 XMOS based USB DACs and converters can support native DSD playback using a
-32-bit sample format. DACs that supporting this feature expose it using a USB interface Alternate Setting.
+32-bit sample format. DACs that support this feature expose it using a *Alternate Setting* on the USB interface.
 
 On Windows systems this feature can be used with a ASIO 2.1/2.2 driver from the DAC manufacturer.
 
-I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed quirks to support it for a few XMOS based USB DACs/boards.
+I have added a new DSD sample format to ALSA and the Linux kernel (DSD_U32_LE) to support it on Linux and added the needed *quirks* to support it for a few XMOS based USB DACs/boards.
 
-Currently supports native DSD playback on the following XMOS based DACs/USB converters:
+Currently native DSD playback on Linux is supported for the following XMOS based DACs/USB converters:
 
 - iFi Audio micro iDSD [max DSD512]
 - iFi Audio nano iDSD [max DSD256, with latest 4.04 firmware]
@@ -18,30 +18,32 @@ Currently supports native DSD playback on the following XMOS based DACs/USB conv
 
 #### ALSA support status:
 - New DSD sample format accepted, code resides in ALSA development git
-- Will be generally available with the next ALSA lib update
+- Will be generally available with the next ALSA lib release
 
 #### Kernel support status:
 - Kernel 3.18rc1 contains the needed new sample format support
 - Kernel 3.18rc1 supports the iFi Audio and DIYINKHK devices
 
 #### Linux Playback support:
-- My python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
+- python scripts [python-dsd-tools] (https://github.com/lintweaker/python-dsd-tools)
 - MPD support (0.18-dsd). See [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018)
 
 
-## Test if you have a supported device
-Currently only devices with USB ID `20b1:3008` and USB ID `20b1:2009` are supported. This are devices from iFi Audio/AMR and DIYINHK. If you think you have a (XMOS based) DAC device or converter that should support native DSD playback please contact me.
+## Check if you have a supported device
+Currently devices with USB ID `20b1:3008` and USB ID `20b1:2009` are supported. This are devices from iFi Audio/AMR and DIYINHK. If you think you have a (XMOS based) DAC device or converter that should support native DSD playback please contact me.
 
 To check if your device is supported, or at least XMOS based(1), use the following command:
 
 `lsusb -d 20b1:`
 
 For the iFi Audio nano and micro iDSD it reports:
-`Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device number may vary).
+`Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device numbers may vary).
 
 *(1) Some manufacturers using the XMOS chip use their own vendor id instead of XMOS.*
 
 ## HOWTO
+There are three ways to get enable native DSD playback on your Linux system:
+
 1. Use pre-compiled binaries
 2. Build the RPMs yourself
 3. Patch and build from source
@@ -63,7 +65,7 @@ Start with the kernel:
 
 If needed, also install the *kernel-headers* and *kernel-devel* packages.
 
-Replace ALSA, the current ALSA needs to be replaced due to the many
+Replace ALSA lib, the current ALSA lib needs to be overwritten due to the many
 dependencies.
 
 `sudo rpm -ivh alsa-lib-1.0.27.2-2.fc20.x86_64.rpm --force`
@@ -76,7 +78,7 @@ Install/update MPD:
 
 With the rpmfusion repo enabled any missing library will be installed as dependency.
 
-As a final installation step, reboot.the machine.
+As a final installation step, reboot the machine.
 After the reboot make sure you are running the new kernel:
 `uname -r` should report `3.16.6-202.jk17.fc20.x86_64`.
 
@@ -96,7 +98,7 @@ Nb if you have DSD over PCM (DoP) enabled with "dsd_usb" "yes", disable it with 
 
 #### Verifify that is works
 
-To verify that native DSD playback actually works, play back a DSD file using either MPD or the playdsd.py python script and check the 'hw_params' file for your ALSA audio device.
+To verify that native DSD playback actually works, play back a DSD file using either *MPD* or the *playdsd.py* script and check the 'hw_params' file of your ALSA audio device.
 
 Example for a DSD64 file:
 
@@ -116,7 +118,7 @@ Notice the DSD_U32_LE sample format and rate of 88200.
 These instructions are tested on Fedora 20 x86_64.
 
 General prerequisites:
-- System prepared for rpm building, [Fedora build a custom kernel] (https://fedoraproject.org/wiki/Building_a_custom_kernel)
+- System prepared for rpm building, see [Fedora build a custom kernel] (https://fedoraproject.org/wiki/Building_a_custom_kernel)
 
 Prerequisites for building MPD:
 - rpmfusion repo added and enabled (rpmfusion-free should be sufficient)
@@ -132,15 +134,22 @@ Build the kernel:
    `yum install pesign`
 
 - Install it (as normal user).
+
   `rpm -ivh <kernel-source-rpm>`
+
 - Copy the needed patches from this repo to the SOURCES directory
 
   `cp SRPMS/patches/* ~/rpmbuild/SOURCES`
-- Replace the SPEC file:
+
+- Replace the SPEC file (2):
 
   `cp SPECS/kernel.spec ~/rpmbuild/SPECS`
+
+(2) If you use another kernel then 3.16.6-202 its SPEC file needs to be adjusted to include the needed patches
+
 - Build the kernel, e.g.:
 
+  `cd ~/rpmbuild/SPECS`
   ``rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m`  kernel.spec``
 
 Build ALSA lib:
@@ -154,7 +163,8 @@ Build ALSA lib:
 
 - Build it (as normal user):
 
-``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``
+  `cd ~/rpmbuild/SPECS`
+  ``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``
 
 Build MPD:
 - Make sure the needed dependencies are installed:
@@ -167,7 +177,8 @@ Build MPD:
 
 - Build it:
 
-``rpmbuild -bb --target=`uname -m` mpd.spec``
+  `cd ~/rpmbuild/SPECS` 
+  ``rpmbuild -bb --target=`uname -m` mpd.spec``
 
 Install the created RPMs using HOWTO step 1 above.
 
