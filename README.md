@@ -193,21 +193,21 @@ Check if the patches apply cleanly:<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch --dry-run`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch --dry-run`<br>
 
-If the patches apply cleanly, apply them.
+If the patches apply cleanly, apply them.<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch`<br>
 
 Compile and install the kernel as per instructions for your Linux distribution.
 
 #### ALSA lib
-The provided ALSA patches are for ALSA lib version 1.0.27.2.
-Download the ALSA lib 1.0.27.2 sources from [alsa-lib] (ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.27.2.tar.bz2)
+The provided ALSA patches are for ALSA lib version 1.0.27.2.<br>
+Download the ALSA lib 1.0.27.2 sources from [alsa-lib] (ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.27.2.tar.bz2)<br>
 Unpack and enter the alsa-lib-1.0.27.2 directory. Apply the patches:
 
-`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Fix-DSD-formats-userland-usability.patch --dry-run`
-`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Add-missing-signed-and-endianess-definitions-for.patch --dry-run`
-`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-2nd-round-of-pcm_misc-DSD-fixes.patch --dry-run`
-`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-u32-le-v3.patch`
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Fix-DSD-formats-userland-usability.patch --dry-run`<br>
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Add-missing-signed-and-endianess-definitions-for.patch --dry-run`<br>
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-2nd-round-of-pcm_misc-DSD-fixes.patch --dry-run`<br>
+`patch -p1 <~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-u32-le-v3.patch`<br>
 
 Compile and install alsa-lib.
 
