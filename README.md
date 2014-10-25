@@ -18,7 +18,7 @@ Currently native DSD playback on Linux is supported for the following XMOS based
 
 #### ALSA support status:
 - New DSD sample format accepted, code resides in ALSA development git
-- Will be generally available with the next ALSA lib release
+- Will be generally available with the next ALSA release (1.0.29)
 
 #### Kernel support status:
 - Kernel 3.18rc1 contains the needed new sample format support
