@@ -185,3 +185,33 @@ Install the created RPMs using HOWTO step 1 above.
 
 ### 3. Patch and build from source
 
+General instructions for compiling everything yourself. The needed patches are in SRPMS/patches.
+
+#### kernel
+Download and prepare the kernel source for your distribution. Enter the kernel source directory.
+Check if the patches apply cleanly:<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch --dry-run`<br>
+
+If the patches apply cleanly, apply them.
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch`<br>
+
+Compile and install the kernel as per instructions for your Linux distribution.
+
+#### ALSA lib
+The provided ALSA patches are for ALSA lib version 1.0.27.2.
+Download the ALSA lib 1.0.27.2 sources from [alsa-lib] (ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.27.2.tar.bz2)
+Unpack and enter the alsa-lib-1.0.27.2 directory. Apply the patches:
+
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Fix-DSD-formats-userland-usability.patch --dry-run`
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Add-missing-signed-and-endianess-definitions-for.patch --dry-run`
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-2nd-round-of-pcm_misc-DSD-fixes.patch --dry-run`
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-u32-le-v3.patch`
+
+Compile and install alsa-lib.
+
+#### MPD
+
+Use [mpd-dsd-018] (https://github.com/lintweaker/mpd-dsd-018). Configure mpd to use dsd_native as mentioned above.
+
