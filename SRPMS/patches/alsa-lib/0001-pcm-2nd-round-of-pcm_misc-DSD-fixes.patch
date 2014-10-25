@@ -1,0 +1,48 @@
+From b9f58dcc6f91fde42e6dd2bb831d6063855512a7 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Fri, 22 Aug 2014 10:15:10 +0200
+Subject: [PATCH] pcm: 2nd round of pcm_misc DSD fixes
+
+Functions 'snd_pcm_format_silence_64' and 'snd_pcm_format_size' also need to be
+able to handle the DSD smaple format.
+
+Changes from v1:
+- Correct silence pattern for DSD
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+Signed-off-by: Takashi Iwai <tiwai@suse.de>
+---
+ src/pcm/pcm_misc.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/pcm/pcm_misc.c b/src/pcm/pcm_misc.c
+index 24d52f9..46fc771 100644
+--- a/src/pcm/pcm_misc.c
++++ b/src/pcm/pcm_misc.c
+@@ -317,11 +317,13 @@ ssize_t snd_pcm_format_size(snd_pcm_format_t format, size_t samples)
+ 	switch (format) {
+ 	case SNDRV_PCM_FORMAT_S8:
+ 	case SNDRV_PCM_FORMAT_U8:
++	case SNDRV_PCM_FORMAT_DSD_U8:
+ 		return samples;
+ 	case SNDRV_PCM_FORMAT_S16_LE:
+ 	case SNDRV_PCM_FORMAT_S16_BE:
+ 	case SNDRV_PCM_FORMAT_U16_LE:
+ 	case SNDRV_PCM_FORMAT_U16_BE:
++	case SNDRV_PCM_FORMAT_DSD_U16_LE:
+ 		return samples * 2;
+ 	case SNDRV_PCM_FORMAT_S18_3LE:
+ 	case SNDRV_PCM_FORMAT_S18_3BE:
+@@ -390,6 +392,9 @@ u_int64_t snd_pcm_format_silence_64(snd_pcm_format_t format)
+ 		return 0;
+ 	case SNDRV_PCM_FORMAT_U8:
+ 		return 0x8080808080808080ULL;
++	case SNDRV_PCM_FORMAT_DSD_U8:
++	case SNDRV_PCM_FORMAT_DSD_U16_LE:
++		return 0x6969696969696969ULL;
+ #ifdef SNDRV_LITTLE_ENDIAN
+ 	case SNDRV_PCM_FORMAT_U16_LE:
+ 		return 0x8000800080008000ULL;
+-- 
+1.9.3
+
