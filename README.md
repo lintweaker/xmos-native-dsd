@@ -130,8 +130,8 @@ Build the kernel:
 - Download the required kernel source RPM from [koji] (http://koji.fedoraproject.org/koji/packageinfo?packageID=8)
 - Make sure the needed dependencies are installed:
 
-   `sudo yum-builddep kernel-<version>.src.rpm`
-   `yum install pesign`
+   `sudo yum-builddep kernel-<version>.src.rpm`<br>
+   `yum install pesign`<br>
 
 - Install it (as normal user).
 
@@ -149,12 +149,13 @@ Build the kernel:
 
 - Build the kernel, e.g.:
 
-  `cd ~/rpmbuild/SPECS`
-  ``rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m`  kernel.spec``
+  `cd ~/rpmbuild/SPECS`<br>
+  ``rpmbuild -bb --without debug --without perf --without debuginfo --target=`uname -m`  kernel.spec``<br>
 
 Build ALSA lib:
 
 - Make sure the needed dependencies are installed:
+
   `sudo yum-builddep alsa-lib-1.0.27.2-2.fc20.src.rpm`
 
 - Install it (as normal user):
@@ -163,8 +164,8 @@ Build ALSA lib:
 
 - Build it (as normal user):
 
-  `cd ~/rpmbuild/SPECS`
-  ``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``
+  `cd ~/rpmbuild/SPECS`<br>
+  ``rpmbuild -bb --target=`uname -m`  alsa-lib.spec``<br>
 
 Build MPD:
 - Make sure the needed dependencies are installed:
@@ -177,8 +178,8 @@ Build MPD:
 
 - Build it:
 
-  `cd ~/rpmbuild/SPECS` 
-  ``rpmbuild -bb --target=`uname -m` mpd.spec``
+  `cd ~/rpmbuild/SPECS`<br>
+  ``rpmbuild -bb --target=`uname -m` mpd.spec``<br>
 
 Install the created RPMs using HOWTO step 1 above.
 
