@@ -1,6 +1,15 @@
 Linux native DSD playback support
 =================================
 
+[19-nov-14]
+news: native DSD support now working for Marantz/Denon DACs.
+Although not XMOS based, recent Denon en Marantz CD/SACD players and DACs also
+support native DSD playback using a 32-bit sample format.
+The following device will be supported shortly:
+- Marantz SA-14S1
+- Marantz HD-DAC1
+Stay tuned.
+
 ## Native DSD support for XMOS based devices
 XMOS based USB DACs and converters can support native DSD playback using a
 32-bit sample format. DACs that support this feature expose it using a *Alternate Setting* on the USB interface.
