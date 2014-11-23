@@ -50,7 +50,7 @@ To check if your device is supported, or at least XMOS based(1), use the followi
 For the iFi Audio nano and micro iDSD it reports:
 `Bus 003 Device 004: ID 20b1:3008 XMOS Ltd` (please note: Bus and Device numbers may vary).
 
-*(1) Some manufacturers using the XMOS chip use their own vendor id instead of XMOS.*
+*(1) Some manufacturers may use the XMOS chip with their own vendor id instead of XMOS.*
 
 ## HOWTO
 There are three ways to get enable native DSD playback on your Linux system:

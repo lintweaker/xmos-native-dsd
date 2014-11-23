@@ -17,7 +17,7 @@
 Name:           mpd
 Epoch:          1
 Version:        0.18.16
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Music Player Daemon
 License:        GPLv2+
 Group:          Applications/Multimedia
@@ -153,7 +153,7 @@ fi
 
 
 %files
-%doc AUTHORS COPYING README UPGRADING
+%doc AUTHORS COPYING README UPGRADING README-native-DSD
 %{_bindir}/%{name}
 %{_mandir}/man1/mpd.1*
 %{_mandir}/man5/mpd.conf.5*
@@ -174,6 +174,9 @@ fi
 
 
 %changelog
+* Sun Nov 23 2014 Jurgen Kramer (gtmkramer@xs4all.nl) - 1:0.18.16-2
+- Native DSD 32-bit sample format switched to DSD_U32_BE
+
 * Fri Oct 24 2014 Jurgen Kramer (gtmkramer@xs4all.nl) - 1:0.18.16-1
 - MPD 0.18.16-dsd release for native DSD playback support testing
 
