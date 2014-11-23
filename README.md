@@ -5,6 +5,7 @@ Linux native DSD playback support
 
 DSD sampleformat for 32-bit samples changed to DSD_U32_BE.
 ALSA, MPD and kernel packages and patches updated.
+New kernel 3.17.4
 
 [19-nov-14]
 

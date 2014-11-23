@@ -1,0 +1,24 @@
+diff -uNrp linux-3.17.3-200.jk5.fc20.x86_64.org/sound/usb/quirks.c linux-3.17.3-200.jk5.fc20.x86_64.new/sound/usb/quirks.c
+--- linux-3.17.3-200.jk5.fc20.x86_64.org/sound/usb/quirks.c	2014-11-15 10:49:35.146161320 +0100
++++ linux-3.17.3-200.jk5.fc20.x86_64.new/sound/usb/quirks.c	2014-11-15 11:12:37.508017537 +0100
+@@ -1146,6 +1146,20 @@ void snd_usb_ctl_msg_quirk(struct usb_de
+ 	if ((le16_to_cpu(dev->descriptor.idVendor) == 0x23ba) &&
+ 	    (requesttype & USB_TYPE_MASK) == USB_TYPE_CLASS)
+ 		mdelay(20);
++
++	/* Marantz/Denon devices with USB DAC functionality need a delay
++	 * after each class compliant request
++	 */
++	if ((le16_to_cpu(dev->descriptor.idVendor) == 0x154e) &&
++	    (requesttype & USB_TYPE_MASK) == USB_TYPE_CLASS) {
++
++		switch (le16_to_cpu(dev->descriptor.idProduct)) {
++		case 0x3005: /* Marantz HD-DAC1 */
++		case 0x3006: /* Marantz SA-14S1 */
++			mdelay(20);
++			break;
++		}
++	}
+ }
+ 
+ /*

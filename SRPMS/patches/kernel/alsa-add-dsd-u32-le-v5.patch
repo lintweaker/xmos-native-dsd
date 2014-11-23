@@ -1,6 +1,6 @@
-diff -uNrp linux-3.15.10-201.fc20.x86_64.org/include/sound/pcm.h linux-3.15.10-201.fc20.x86_64.new/include/sound/pcm.h
---- linux-3.15.10-201.fc20.x86_64.org/include/sound/pcm.h	2014-06-08 20:19:54.000000000 +0200
-+++ linux-3.15.10-201.fc20.x86_64.new/include/sound/pcm.h	2014-09-05 09:48:48.536868719 +0200
+diff -uNrp linux-3.17.2-200.fc20.x86_64.org/include/sound/pcm.h linux-3.17.2-200.fc20.x86_64.new/include/sound/pcm.h
+--- linux-3.17.2-200.fc20.x86_64.org/include/sound/pcm.h	2014-10-05 21:23:04.000000000 +0200
++++ linux-3.17.2-200.fc20.x86_64.new/include/sound/pcm.h	2014-11-07 10:19:40.843244275 +0100
 @@ -183,6 +183,7 @@ struct snd_pcm_ops {
  #define SNDRV_PCM_FMTBIT_G723_40_1B	_SNDRV_PCM_FMTBIT(G723_40_1B)
  #define SNDRV_PCM_FMTBIT_DSD_U8		_SNDRV_PCM_FMTBIT(DSD_U8)
@@ -9,10 +9,10 @@ diff -uNrp linux-3.15.10-201.fc20.x86_64.org/include/sound/pcm.h linux-3.15.10-2
  
  #ifdef SNDRV_LITTLE_ENDIAN
  #define SNDRV_PCM_FMTBIT_S16		SNDRV_PCM_FMTBIT_S16_LE
-diff -uNrp linux-3.15.10-201.fc20.x86_64.org/include/uapi/sound/asound.h linux-3.15.10-201.fc20.x86_64.new/include/uapi/sound/asound.h
---- linux-3.15.10-201.fc20.x86_64.org/include/uapi/sound/asound.h	2014-06-08 20:19:54.000000000 +0200
-+++ linux-3.15.10-201.fc20.x86_64.new/include/uapi/sound/asound.h	2014-09-05 09:48:48.536868719 +0200
-@@ -217,7 +217,8 @@ typedef int __bitwise snd_pcm_format_t;
+diff -uNrp linux-3.17.2-200.fc20.x86_64.org/include/uapi/sound/asound.h linux-3.17.2-200.fc20.x86_64.new/include/uapi/sound/asound.h
+--- linux-3.17.2-200.fc20.x86_64.org/include/uapi/sound/asound.h	2014-10-05 21:23:04.000000000 +0200
++++ linux-3.17.2-200.fc20.x86_64.new/include/uapi/sound/asound.h	2014-11-07 10:19:40.843244275 +0100
+@@ -219,7 +219,8 @@ typedef int __bitwise snd_pcm_format_t;
  #define	SNDRV_PCM_FORMAT_G723_40_1B	((__force snd_pcm_format_t) 47) /* 1 sample in 1 byte */
  #define	SNDRV_PCM_FORMAT_DSD_U8		((__force snd_pcm_format_t) 48) /* DSD, 1-byte samples DSD (x8) */
  #define	SNDRV_PCM_FORMAT_DSD_U16_LE	((__force snd_pcm_format_t) 49) /* DSD, 2-byte samples DSD (x16), little endian */
@@ -22,9 +22,9 @@ diff -uNrp linux-3.15.10-201.fc20.x86_64.org/include/uapi/sound/asound.h linux-3
  
  #ifdef SNDRV_LITTLE_ENDIAN
  #define	SNDRV_PCM_FORMAT_S16		SNDRV_PCM_FORMAT_S16_LE
-diff -uNrp linux-3.15.10-201.fc20.x86_64.org/sound/core/pcm.c linux-3.15.10-201.fc20.x86_64.new/sound/core/pcm.c
---- linux-3.15.10-201.fc20.x86_64.org/sound/core/pcm.c	2014-06-08 20:19:54.000000000 +0200
-+++ linux-3.15.10-201.fc20.x86_64.new/sound/core/pcm.c	2014-09-05 09:48:48.536868719 +0200
+diff -uNrp linux-3.17.2-200.fc20.x86_64.org/sound/core/pcm.c linux-3.17.2-200.fc20.x86_64.new/sound/core/pcm.c
+--- linux-3.17.2-200.fc20.x86_64.org/sound/core/pcm.c	2014-10-05 21:23:04.000000000 +0200
++++ linux-3.17.2-200.fc20.x86_64.new/sound/core/pcm.c	2014-11-07 10:19:40.843244275 +0100
 @@ -215,6 +215,7 @@ static char *snd_pcm_format_names[] = {
  	FORMAT(G723_40_1B),
  	FORMAT(DSD_U8),
@@ -33,12 +33,12 @@ diff -uNrp linux-3.15.10-201.fc20.x86_64.org/sound/core/pcm.c linux-3.15.10-201.
  };
  
  const char *snd_pcm_format_name(snd_pcm_format_t format)
-diff -uNrp linux-3.15.10-201.fc20.x86_64.org/sound/core/pcm_misc.c linux-3.15.10-201.fc20.x86_64.new/sound/core/pcm_misc.c
---- linux-3.15.10-201.fc20.x86_64.org/sound/core/pcm_misc.c	2014-06-08 20:19:54.000000000 +0200
-+++ linux-3.15.10-201.fc20.x86_64.new/sound/core/pcm_misc.c	2014-09-05 09:48:48.536868719 +0200
+diff -uNrp linux-3.17.2-200.fc20.x86_64.org/sound/core/pcm_misc.c linux-3.17.2-200.fc20.x86_64.new/sound/core/pcm_misc.c
+--- linux-3.17.2-200.fc20.x86_64.org/sound/core/pcm_misc.c	2014-10-05 21:23:04.000000000 +0200
++++ linux-3.17.2-200.fc20.x86_64.new/sound/core/pcm_misc.c	2014-11-07 10:19:40.843244275 +0100
 @@ -148,6 +148,10 @@ static struct pcm_format_data pcm_format
  		.width = 16, .phys = 16, .le = 1, .signd = 0,
- 		.silence = {},
+ 		.silence = { 0x69, 0x69 },
  	},
 +	[SNDRV_PCM_FORMAT_DSD_U32_LE] = {
 +		.width = 32, .phys = 32, .le = 1, .signd = 0,

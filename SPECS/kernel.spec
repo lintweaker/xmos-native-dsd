@@ -31,7 +31,7 @@ Summary: The Linux kernel
 #
 # (Uncomment the '#' and both spaces below to set the buildid.)
 #
-%define buildid .jk17
+%define buildid .jk1
 ###################################################################
 
 # The buildid can also be specified on the rpmbuild command line
@@ -62,19 +62,19 @@ Summary: The Linux kernel
 # For non-released -rc kernels, this will be appended after the rcX and
 # gitX tags, so a 3 here would become part of release "0.rcX.gitX.3"
 #
-%global baserelease 202
+%global baserelease 200
 %global fedora_build %{baserelease}
 
 # base_sublevel is the kernel version we're starting with and patching
 # on top of -- for example, 3.1-rc7-git1 starts with a 3.0 base,
 # which yields a base_sublevel of 0.
-%define base_sublevel 16
+%define base_sublevel 17
 
 ## If this is a released kernel ##
 %if 0%{?released_kernel}
 
 # Do we have a -stable update to apply?
-%define stable_update 6
+%define stable_update 4
 # Is it a -stable RC?
 %define stable_rc 0
 # Set rpm version accordingly
@@ -610,7 +610,7 @@ Patch00: patch-3.%{base_sublevel}-git%{gitrev}.xz
 Patch04: compile-fixes.patch
 
 # build tweak for build ID magic, even for -vanilla
-Patch05: makefile-after_link.patch
+Patch05: kbuild-AFTER_LINK.patch
 
 %if !%{nopatches}
 
@@ -628,20 +628,38 @@ Patch470: die-floppy-die.patch
 
 Patch500: Revert-Revert-ACPI-video-change-acpi-video-brightnes.patch
 
-Patch510: silence-noise.patch
+Patch510: input-silence-i8042-noise.patch
 Patch530: silence-fbcon-logo.patch
 
-Patch600: 0001-lib-cpumask-Make-CPUMASK_OFFSTACK-usable-without-deb.patch
+Patch600: lib-cpumask-Make-CPUMASK_OFFSTACK-usable-without-deb.patch
 
 Patch800: crash-driver.patch
 
 # crypto/
 
 # secure boot
-Patch1000: secure-modules.patch
-Patch1001: modsign-uefi.patch
-# atch1002: sb-hibernate.patch
-Patch1003: sysrq-secure-boot.patch
+Patch1000: Add-secure_modules-call.patch
+Patch1001: PCI-Lock-down-BAR-access-when-module-security-is-ena.patch
+Patch1002: x86-Lock-down-IO-port-access-when-module-security-is.patch
+Patch1003: ACPI-Limit-access-to-custom_method.patch
+Patch1004: asus-wmi-Restrict-debugfs-interface-when-module-load.patch
+Patch1005: Restrict-dev-mem-and-dev-kmem-when-module-loading-is.patch
+Patch1006: acpi-Ignore-acpi_rsdp-kernel-parameter-when-module-l.patch
+Patch1007: kexec-Disable-at-runtime-if-the-kernel-enforces-modu.patch
+Patch1008: x86-Restrict-MSR-access-when-module-loading-is-restr.patch
+Patch1009: Add-option-to-automatically-enforce-module-signature.patch
+Patch1010: efi-Disable-secure-boot-if-shim-is-in-insecure-mode.patch
+Patch1011: efi-Make-EFI_SECURE_BOOT_SIG_ENFORCE-depend-on-EFI.patch
+Patch1012: efi-Add-EFI_SECURE_BOOT-bit.patch
+Patch1013: hibernate-Disable-in-a-signed-modules-environment.patch
+
+Patch1014: Add-EFI-signature-data-types.patch
+Patch1015: Add-an-EFI-signature-blob-parser-and-key-loader.patch
+Patch1016: KEYS-Add-a-system-blacklist-keyring.patch
+Patch1017: MODSIGN-Import-certificates-from-UEFI-Secure-Boot.patch
+Patch1018: MODSIGN-Support-not-importing-certs-from-db.patch
+
+Patch1019: Add-sysrq-option-to-disable-secure-boot-mode.patch
 
 # virt + ksm patches
 
@@ -650,6 +668,7 @@ Patch1003: sysrq-secure-boot.patch
 # nouveau + drm fixes
 # intel drm is all merged upstream
 Patch1826: drm-i915-hush-check-crtc-state.patch
+Patch1827: drm-i915-Don-t-WARN-in-edp_panel_vdd_off.patch
 
 # Quiet boot fixes
 
@@ -664,16 +683,25 @@ Patch14000: hibernate-freeze-filesystems.patch
 
 Patch14010: lis3-improve-handling-of-null-rate.patch
 
-Patch15000: nowatchdog-on-virt.patch
+Patch15000: watchdog-Disable-watchdog-on-virtual-machines.patch
 
+# PPC
+Patch18000: ppc64-fixtools.patch
 # ARM64
 
 # ARMv7
-Patch21020: arm-tegra-usb-no-reset-linux33.patch
-Patch21021: arm-beagle.patch
-Patch21022: arm-imx6-utilite.patch
-# http://www.spinics.net/lists/linux-tegra/msg17948.html
-Patch21024: arm-qemu-fixdisplay.patch
+Patch21020: ARM-tegra-usb-no-reset.patch
+Patch21021: arm-dts-am335x-boneblack-lcdc-add-panel-info.patch
+Patch21022: arm-dts-am335x-boneblack-add-cpu0-opp-points.patch
+Patch21023: arm-dts-am335x-bone-common-enable-and-use-i2c2.patch
+Patch21024: arm-dts-am335x-bone-common-setup-default-pinmux-http.patch
+Patch21025: arm-dts-am335x-bone-common-add-uart2_pins-uart4_pins.patch
+Patch21026: pinctrl-pinctrl-single-must-be-initialized-early.patch
+
+Patch21028: arm-i.MX6-Utilite-device-dtb.patch
+Patch21029: arm-dts-sun7i-bananapi.patch
+
+Patch21100: arm-highbank-l2-reverts.patch
 
 #rhbz 754518
 Patch21235: scsi-sd_revalidate_disk-prevent-NULL-ptr-deref.patch
@@ -682,87 +710,40 @@ Patch21235: scsi-sd_revalidate_disk-prevent-NULL-ptr-deref.patch
 Patch21242: criu-no-expert.patch
 
 #rhbz 892811
-Patch21247: ath9k_rx_dma_stop_check.patch
+Patch21247: ath9k-rx-dma-stop-check.patch
 
 Patch22000: weird-root-dentry-name-debug.patch
 
 #rhbz 1025603
 Patch25063: disable-libdw-unwind-on-non-x86.patch
 
-Patch26000: perf-lib64.patch
+Patch26000: perf-install-trace-event-plugins.patch
 
 # Patch series from Hans for various backlight and platform driver fixes
 Patch26002: samsung-laptop-Add-broken-acpi-video-quirk-for-NC210.patch
-Patch26004: asus-wmi-Add-a-no-backlight-quirk.patch
-Patch26005: eeepc-wmi-Add-no-backlight-quirk-for-Asus-H87I-PLUS-.patch
-
-Patch25109: revert-input-wacom-testing-result-shows-get_report-is-unnecessary.patch
-
-#rhbz 1021036, submitted upstream
-Patch25110: 0001-ideapad-laptop-Change-Lenovo-Yoga-2-series-rfkill-ha.patch
 
 #rhbz 1134969
-Patch26019: Input-wacom-Add-support-for-the-Cintiq-Companion.patch
+Patch26016: HID-wacom-Add-support-for-the-Cintiq-Companion.patch
 
 #rhbz 1110011
-Patch26021: i8042-Also-store-the-aux-firmware-id-in-multi-plexed.patch
-Patch26022: psmouse-Add-psmouse_matches_pnp_id-helper-function.patch
-Patch26023: psmouse-Add-support-for-detecting-FocalTech-PS-2-tou.patch
-
-#rhbz 1143812
-Patch26027: HID-i2c-hid-call-the-hid-driver-s-suspend-and-resume.patch
-
-#rhbz 1123584
-Patch26028: HID-rmi-check-sanity-of-incoming-report.patch
-
-Patch26030: GFS2-Make-rename-not-save-dirent-location.patch
-
-#CVE-2014-7970 rhbz 1151095 1151484
-Patch26032: mnt-Prevent-pivot_root-from-creating-a-loop-in-the-m.patch
-
-#rhbz 1149414
-Patch26033: bcache-Make-sure-to-pass-GFP_WAIT-to-mempool_alloc.patch
-
-#rhbz 1149509
-Patch26034: USB-core-add-device-qualifier-quirk.patch
-Patch26035: USB-quirks-enable-device-qualifier-quirk-for-Elan-To.patch
-Patch26036: USB-quirks-enable-device-qualifier-quirk-for-another.patch
-Patch26037: HID-usbhid-add-always-poll-quirk.patch
-Patch26038: HID-usbhid-enable-always-poll-quirk-for-Elan-Touchsc.patch
-Patch26039: HID-usbhid-always-poll-quirk-for-Elan-Touchscreen-00.patch
-Patch26040: USB-quirks-device-qualifier-quirk-for-another-Elan-t.patch
-Patch26041: HID-usbhid-always-poll-quirk-for-Elan-Touchscreen-01.patch
-
-#CVE-2014-7975 rhbz 1151108 1152025
-Patch26042: fs-Add-a-missing-permission-check-to-do_umount.patch
-
-#CVE-2014-8086 rhbz 1151353 1152608
-Patch26056: ext4-fix-race-between-write-and-fcntl-F_SETFL.patch
+Patch26019: psmouse-Add-psmouse_matches_pnp_id-helper-function.patch
+Patch26020: psmouse-Add-support-for-detecting-FocalTech-PS-2-tou.patch
 
 #rhbz 1089731
 Patch26058: asus-nb-wmi-Add-wapf4-quirk-for-the-X550VB.patch
 
-#rhbz 1153381
-Patch26059: Input-synaptics-gate-forcepad-support-by-DMI-check.patch
-
-# CVE-2014-3690 rhbz 1153322 1155372
-Patch26060: x86-kvm-vmx-Preserve-CR4-across-VM-entry.patch
-
-#CVE-2014-3688 rhbz 1155745 1155751
-Patch26061: net-sctp-fix-skb_over_panic-when-receiving-malformed.patch
-
-#CVE-2014-3687 rhbz 1155731 1155738
-Patch26062: net-sctp-fix-panic-on-duplicate-ASCONF-chunks.patch
-
-#CVE-2014-3673 rhbz 1147850 1155727
-Patch26063: net-sctp-fix-remote-memory-pressure-from-excessive-q.patch
+#rhbz 1135338
+Patch26090: HID-add-support-for-MS-Surface-Pro-3-Type-Cover.patch
 
 # git clone ssh://git.fedorahosted.org/git/kernel-arm64.git, git diff master...devel
 Patch30000: kernel-arm64.patch
 
 # JK DSD enhancements
-Patch31000: alsa-add-dsd-u32-le-v4.patch
+Patch31000: alsa-add-dsd-u32-le-v5.patch
 Patch31001: 0001-add-native-DSD-support-for-XMOS-based-DACs.patch
+Patch31002: alsa-usb-marantz-ctl-msg-quirk-v2.patch
+Patch31003: alsa-add-dsd-be-formats.patch
+Patch31004: alsa-usb-switch-xmos-dsd-quirk-to-be.patch
 
 # END OF PATCH DEFINITIONS
 
@@ -1292,7 +1273,7 @@ do
   rm $i.tmp
 done
 
-ApplyPatch makefile-after_link.patch
+ApplyPatch kbuild-AFTER_LINK.patch
 
 #
 # misc small stuff to make things compile
@@ -1306,17 +1287,29 @@ ApplyOptionalPatch upstream-reverts.patch -R
 
 # Architecture patches
 # x86(-64)
-ApplyPatch 0001-lib-cpumask-Make-CPUMASK_OFFSTACK-usable-without-deb.patch
+ApplyPatch lib-cpumask-Make-CPUMASK_OFFSTACK-usable-without-deb.patch
+
+# PPC
+ApplyPatch ppc64-fixtools.patch
 
 # ARM64
 
 #
 # ARM
 #
-ApplyPatch arm-tegra-usb-no-reset-linux33.patch
-ApplyPatch arm-beagle.patch
-ApplyPatch arm-imx6-utilite.patch
-ApplyPatch arm-qemu-fixdisplay.patch
+ApplyPatch ARM-tegra-usb-no-reset.patch
+
+ApplyPatch arm-dts-am335x-boneblack-lcdc-add-panel-info.patch
+ApplyPatch arm-dts-am335x-boneblack-add-cpu0-opp-points.patch
+ApplyPatch arm-dts-am335x-bone-common-enable-and-use-i2c2.patch
+ApplyPatch arm-dts-am335x-bone-common-setup-default-pinmux-http.patch
+ApplyPatch arm-dts-am335x-bone-common-add-uart2_pins-uart4_pins.patch
+ApplyPatch pinctrl-pinctrl-single-must-be-initialized-early.patch
+
+ApplyPatch arm-i.MX6-Utilite-device-dtb.patch
+ApplyPatch arm-dts-sun7i-bananapi.patch
+
+ApplyPatch arm-highbank-l2-reverts.patch
 
 #
 # bugfixes to drivers and filesystems
@@ -1364,7 +1357,7 @@ ApplyPatch die-floppy-die.patch
 ApplyPatch no-pcspkr-modalias.patch
 
 # Silence some useless messages that still get printed with 'quiet'
-ApplyPatch silence-noise.patch
+ApplyPatch input-silence-i8042-noise.patch
 
 # Make fbcon not show the penguins with 'quiet'
 ApplyPatch silence-fbcon-logo.patch
@@ -1377,10 +1370,28 @@ ApplyPatch crash-driver.patch
 # crypto/
 
 # secure boot
-ApplyPatch secure-modules.patch
-ApplyPatch modsign-uefi.patch
-# pplyPatch sb-hibernate.patch
-ApplyPatch sysrq-secure-boot.patch
+ApplyPatch Add-secure_modules-call.patch
+ApplyPatch PCI-Lock-down-BAR-access-when-module-security-is-ena.patch
+ApplyPatch x86-Lock-down-IO-port-access-when-module-security-is.patch
+ApplyPatch ACPI-Limit-access-to-custom_method.patch
+ApplyPatch asus-wmi-Restrict-debugfs-interface-when-module-load.patch
+ApplyPatch Restrict-dev-mem-and-dev-kmem-when-module-loading-is.patch
+ApplyPatch acpi-Ignore-acpi_rsdp-kernel-parameter-when-module-l.patch
+ApplyPatch kexec-Disable-at-runtime-if-the-kernel-enforces-modu.patch
+ApplyPatch x86-Restrict-MSR-access-when-module-loading-is-restr.patch
+ApplyPatch Add-option-to-automatically-enforce-module-signature.patch
+ApplyPatch efi-Disable-secure-boot-if-shim-is-in-insecure-mode.patch
+ApplyPatch efi-Make-EFI_SECURE_BOOT_SIG_ENFORCE-depend-on-EFI.patch
+ApplyPatch efi-Add-EFI_SECURE_BOOT-bit.patch
+ApplyPatch hibernate-Disable-in-a-signed-modules-environment.patch
+
+ApplyPatch Add-EFI-signature-data-types.patch
+ApplyPatch Add-an-EFI-signature-blob-parser-and-key-loader.patch
+ApplyPatch KEYS-Add-a-system-blacklist-keyring.patch
+ApplyPatch MODSIGN-Import-certificates-from-UEFI-Secure-Boot.patch
+ApplyPatch MODSIGN-Support-not-importing-certs-from-db.patch
+
+ApplyPatch Add-sysrq-option-to-disable-secure-boot-mode.patch
 
 # Assorted Virt Fixes
 
@@ -1390,6 +1401,7 @@ ApplyPatch sysrq-secure-boot.patch
 
 # Intel DRM
 ApplyPatch drm-i915-hush-check-crtc-state.patch
+ApplyPatch drm-i915-Don-t-WARN-in-edp_panel_vdd_off.patch
 
 # Radeon DRM
 
@@ -1402,7 +1414,7 @@ ApplyPatch disable-i8042-check-on-apple-mac.patch
 ApplyPatch lis3-improve-handling-of-null-rate.patch
 
 # Disable watchdog on virtual machines.
-ApplyPatch nowatchdog-on-virt.patch
+ApplyPatch watchdog-Disable-watchdog-on-virtual-machines.patch
 
 #rhbz 754518
 ApplyPatch scsi-sd_revalidate_disk-prevent-NULL-ptr-deref.patch
@@ -1413,78 +1425,35 @@ ApplyPatch scsi-sd_revalidate_disk-prevent-NULL-ptr-deref.patch
 ApplyPatch criu-no-expert.patch
 
 #rhbz 892811
-ApplyPatch ath9k_rx_dma_stop_check.patch
+ApplyPatch ath9k-rx-dma-stop-check.patch
 
 #rhbz 1025603
 ApplyPatch disable-libdw-unwind-on-non-x86.patch
 
-ApplyPatch perf-lib64.patch
+ApplyPatch perf-install-trace-event-plugins.patch
 
 # Patch series from Hans for various backlight and platform driver fixes
 ApplyPatch samsung-laptop-Add-broken-acpi-video-quirk-for-NC210.patch
-ApplyPatch asus-wmi-Add-a-no-backlight-quirk.patch
-ApplyPatch eeepc-wmi-Add-no-backlight-quirk-for-Asus-H87I-PLUS-.patch
-
-ApplyPatch revert-input-wacom-testing-result-shows-get_report-is-unnecessary.patch
-
-#rhbz 1021036, submitted upstream
-ApplyPatch 0001-ideapad-laptop-Change-Lenovo-Yoga-2-series-rfkill-ha.patch
 
 #rhbz 1134969
-ApplyPatch Input-wacom-Add-support-for-the-Cintiq-Companion.patch
+ApplyPatch HID-wacom-Add-support-for-the-Cintiq-Companion.patch
 
 #rhbz 1110011
-ApplyPatch i8042-Also-store-the-aux-firmware-id-in-multi-plexed.patch
 ApplyPatch psmouse-Add-psmouse_matches_pnp_id-helper-function.patch
 ApplyPatch psmouse-Add-support-for-detecting-FocalTech-PS-2-tou.patch
-
-#rhbz 1143812
-ApplyPatch HID-i2c-hid-call-the-hid-driver-s-suspend-and-resume.patch
-
-#rhbz 1123584
-ApplyPatch HID-rmi-check-sanity-of-incoming-report.patch
-
-ApplyPatch GFS2-Make-rename-not-save-dirent-location.patch
-
-#CVE-2014-7970 rhbz 1151095 1151484
-ApplyPatch mnt-Prevent-pivot_root-from-creating-a-loop-in-the-m.patch
-
-#rhbz 1149414
-ApplyPatch bcache-Make-sure-to-pass-GFP_WAIT-to-mempool_alloc.patch
-
-#rhbz 1149509
-ApplyPatch USB-core-add-device-qualifier-quirk.patch
-ApplyPatch USB-quirks-enable-device-qualifier-quirk-for-Elan-To.patch
-ApplyPatch USB-quirks-enable-device-qualifier-quirk-for-another.patch
-ApplyPatch HID-usbhid-add-always-poll-quirk.patch
-ApplyPatch HID-usbhid-enable-always-poll-quirk-for-Elan-Touchsc.patch
-ApplyPatch HID-usbhid-always-poll-quirk-for-Elan-Touchscreen-00.patch
-ApplyPatch USB-quirks-device-qualifier-quirk-for-another-Elan-t.patch
-ApplyPatch HID-usbhid-always-poll-quirk-for-Elan-Touchscreen-01.patch
-
-#CVE-2014-7975 rhbz 1151108 1152025
-ApplyPatch fs-Add-a-missing-permission-check-to-do_umount.patch
-
-#CVE-2014-8086 rhbz 1151353 1152608
-ApplyPatch ext4-fix-race-between-write-and-fcntl-F_SETFL.patch
 
 #rhbz 1089731
 ApplyPatch asus-nb-wmi-Add-wapf4-quirk-for-the-X550VB.patch
 
-#rhbz 1153381
-ApplyPatch Input-synaptics-gate-forcepad-support-by-DMI-check.patch
+#rhbz 1135338
+ApplyPatch HID-add-support-for-MS-Surface-Pro-3-Type-Cover.patch
 
-#CVE-2014-3690 rhbz 1153322 1155372
-ApplyPatch x86-kvm-vmx-Preserve-CR4-across-VM-entry.patch
-
-#CVE-2014-3688 rhbz 1155745 1155751
-ApplyPatch net-sctp-fix-skb_over_panic-when-receiving-malformed.patch
-
-#CVE-2014-3687 rhbz 1155731 1155738
-ApplyPatch net-sctp-fix-panic-on-duplicate-ASCONF-chunks.patch
-
-#CVE-2014-3673 rhbz 1147850 1155727
-ApplyPatch net-sctp-fix-remote-memory-pressure-from-excessive-q.patch
+# JK DSD enhancements
+ApplyPatch alsa-add-dsd-u32-le-v5.patch
+ApplyPatch 0001-add-native-DSD-support-for-XMOS-based-DACs.patch
+ApplyPatch alsa-usb-marantz-ctl-msg-quirk-v2.patch
+ApplyPatch alsa-add-dsd-be-formats.patch
+ApplyPatch alsa-usb-switch-xmos-dsd-quirk-to-be.patch
 
 %if 0%{?aarch64patches}
 ApplyPatch kernel-arm64.patch
@@ -1492,10 +1461,6 @@ ApplyPatch kernel-arm64.patch
 ApplyPatch kernel-arm64.patch -R
 %endif
 %endif
-
-# JK ALSA DSD enhancements
-ApplyPatch alsa-add-dsd-u32-le-v4.patch
-ApplyPatch 0001-add-native-DSD-support-for-XMOS-based-DACs.patch
 
 # END OF PATCH APPLICATIONS
 
@@ -2308,9 +2273,61 @@ fi
 #                 ||----w |
 #                 ||     ||
 %changelog
-* Fri Oct 24 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 3.16-6-202.jk17
-- Add support for DSD_U32_LE
-- Add quirks for native DSD support for a few XMOS based devices
+* Sun Nov 23 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 3.17.4-200.jk1
+- new DSD sample formats
+- Native DSD support for a few XMOS based DACs
+
+* Fri Nov 21 2014 Justin M. Forbes <jforbes@fedoraproject.org> - 3.17.4-200
+- Linux v3.17.4
+- disable early microcode load (rhbz 1163520)
+
+* Fri Nov 21 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Move TPM drivers to main kernel package (rhbz 1164937)
+
+* Wed Nov 19 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Disable SERIAL_8250 on s390x (rhbz 1158848)
+
+* Fri Nov 14 2014 Justin M. Forbes <jforbes@fedoraproject.org> - 3.17.3-200
+- Linux v3.17.3
+
+* Fri Nov 14 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Quiet WARN in i915 edp VDD handling
+- Enable I40EVF driver (rhbz 1164029)
+
+* Thu Nov 13 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Add patch for MS Surface Pro 3 Type Cover (rhbz 1135338)
+- CVE-2014-7843 aarch64: copying from /dev/zero causes local DoS (rhbz 1163744 1163745)
+- CVE-2014-7842 kvm: reporting emulation failures to userspace (rhbz 1163762 1163767)
+
+* Wed Nov 12 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- CVE-2014-7841 sctp: NULL ptr deref on malformed packet (rhbz 1163087 1163095)
+
+* Mon Nov 10 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Fix Samsung pci-e SSD handling on some macbooks (rhbz 1161805)
+- Add patch to fix crypto allocation issues on PAGE_SIZE > 4k
+
+* Fri Nov 07 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Fix iwlwifi oops (rhbz 1151836)
+- CVE-2014-7826 CVE-2014-7825 insufficient syscall number validation in perf and ftrace subsystems (rhbz 1161565 1161572)
+
+* Tue Nov 04 2014 Justin M. Forbes <jforbes@fedoraproject.org> - 3.17.2-200
+- Linux v3.17.2
+
+* Thu Oct 30 2014 Justin M. Forbes <jforbes@fedoraproject.org> - 3.16.7-200
+- Linux v3.16.7
+
+* Wed Oct 29 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Fix DVB-T cxusb firmware loading (rhbz 1154454)
+
+* Tue Oct 28 2014 Josh Boyer <jwboyer@fedoraproject.org>
+- Add quirk for rfkill on Yoga 3 machines (rhbz 1157327)
+
+* Fri Oct 24 2014 Josh Boyer <jwboyer@fedoraproject.org> - 3.16.6-203
+- CVE-2014-3610 kvm: noncanonical MSR writes (rhbz 1144883 1156543)
+- CVE-2014-3611 kvm: PIT timer race condition (rhbz 1144878 1156537)
+- CVE-2014-3646 kvm: vmx: invvpid vm exit not handled (rhbz 1144825 1156534)
+- CVE-2014-8369 kvm: excessive pages un-pinning in kvm_iommu_map error path (rhbz 1156518 1156522)
+- Add touchpad quirk for Fujitsu Lifebook A544/AH544 models (rhbz 1111138)
 
 * Wed Oct 22 2014 Josh Boyer <jwboyer@fedoraproject.org> - 3.16.6-202
 - CVE-2014-3688 sctp: remote memory pressure from excessive queuing (rhbz 1155745 1155751)
