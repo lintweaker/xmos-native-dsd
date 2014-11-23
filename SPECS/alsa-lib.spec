@@ -21,6 +21,7 @@ Patch5:   0001-pcm-Fix-DSD-formats-userland-usability.patch
 Patch6:   0001-pcm-Add-missing-signed-and-endianess-definitions-for.patch
 Patch7:   0001-pcm-2nd-round-of-pcm_misc-DSD-fixes.patch
 Patch8:   alsa-lib-add-dsd-u32-le-v3.patch
+Patch9:   alsa-lib-add-dsd-be-formats.patch
 
 BuildRequires:  doxygen
 Requires(post): /sbin/ldconfig, coreutils
@@ -55,6 +56,7 @@ against the ALSA libraries and interfaces.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 %configure --disable-aload --with-plugindir=%{_libdir}/alsa-lib --disable-alisp
@@ -118,6 +120,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 %{_datadir}/aclocal/alsa.m4
 
 %changelog
+* Sun Nov 23 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 1.0.27.2-2
+- Add 32-bit DSD BE sample formats
+
 * Fri Oct 24 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 1.0.27.2-2
 - Add DSD enhancements
 
