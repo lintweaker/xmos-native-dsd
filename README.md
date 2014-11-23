@@ -3,9 +3,9 @@ Linux native DSD playback support
 
 [24-nov-14]
 
-DSD sampleformat for 32-bit samples changed to DSD_U32_BE.<BR>
-ALSA, MPD and kernel packages and patches updated.<BR>
-New kernel 3.17.4<BR>
+DSD sampleformat for 32-bit samples changed to DSD_U32_BE.<br>
+ALSA, MPD and kernel packages and patches updated.<br>
+New kernel 3.17.4<br>
 
 [19-nov-14]
 
@@ -78,7 +78,7 @@ Steps:
 
 Start with the kernel:
 
-`sudo yum localinstall kernel-3.16.6-202.jk17.fc20.x86_64.rpm`
+`sudo yum localinstall kernel-3.17.4-200.jk1.fc20.x86_64.rpm`
 
 If needed, also install the *kernel-headers* and *kernel-devel* packages.
 
@@ -97,7 +97,7 @@ With the rpmfusion repo enabled any missing library will be installed as depende
 
 As a final installation step, reboot the machine.
 After the reboot make sure you are running the new kernel:
-`uname -r` should report `3.16.6-202.jk17.fc20.x86_64`.
+`uname -r` should report `3.17.4-200.jk1.fc20.x86_64`.
 
 Now configure mpd (*/etc/mpd.conf*) to your liking and add the statements with "dsd_native" to the audio section, e.g.:
 
@@ -162,7 +162,7 @@ Build the kernel:
 
   `cp SPECS/kernel.spec ~/rpmbuild/SPECS`
 
-(2) If you use another kernel then 3.16.6-202 its SPEC file needs to be adjusted to include the needed patches
+(2) If you use another kernel then 3.17.4-200, its SPEC file needs to be adjusted to include the needed patches
 
 - Build the kernel, e.g.:
 
@@ -207,12 +207,19 @@ General instructions for compiling everything yourself. The needed patches are i
 #### kernel
 Download and prepare the kernel source for your distribution. Enter the kernel source directory.
 Check if the patches apply cleanly:<br>
-`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch --dry-run`<br>
-`patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v5.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/0001-add-native-DSD-support-for-XMOS-based-DACs.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-ctl-msg-quirk-v2.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-be-formats.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-switch-xmos-dsd-quirk-to-be.patch --dry-run`<br>
 
 If the patches apply cleanly, apply them.<br>
-`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v4.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v5.patch`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel0001-add-native-DSD-support-for-XMOS-based-DACs.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-ctl-msg-quirk-v2.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-be-formats.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-switch-xmos-dsd-quirk-to-be.patch`<br>
+
 
 Compile and install the kernel as per instructions for your Linux distribution.
 
@@ -226,7 +233,8 @@ Unpack and enter the alsa-lib-1.0.27.2 directory. Apply the patches:
 `patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Fix-DSD-formats-userland-usability.patch --dry-run`<br>
 `patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-Add-missing-signed-and-endianess-definitions-for.patch --dry-run`<br>
 `patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/0001-pcm-2nd-round-of-pcm_misc-DSD-fixes.patch --dry-run`<br>
-`patch -p1 <~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-u32-le-v3.patch`<br>
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-u32-le-v3.patch`<br>
+`patch -p1 < ~/path/to/SRPMS/patches/alsa-lib/alsa-lib-add-dsd-be-formats.patch`<br>
 
 Compile and install alsa-lib.
 
