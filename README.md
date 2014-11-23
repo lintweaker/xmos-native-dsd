@@ -2,6 +2,7 @@ Linux native DSD playback support
 =================================
 
 [24-nov-14]
+
 DSD sampleformat for 32-bit samples changed to DSD_U32_BE.
 
 [19-nov-14]
