@@ -1,6 +1,9 @@
 Linux native DSD playback support
 =================================
 
+[24-nov-14]
+DSD sampleformat for 32-bit samples changed to DSD_U32_BE.
+
 [19-nov-14]
 
 news: native DSD support now working for Marantz/Denon DACs.
@@ -85,7 +88,7 @@ If needed, install the *alsa-devel* package as well.
 
 Install/update MPD:
 
-`sudo yum localinstall mpd-0.18.16-1.fc20.x86_64.rpm`
+`sudo yum localinstall mpd-0.18.16-2.fc20.x86_64.rpm`
 
 With the rpmfusion repo enabled any missing library will be installed as dependency.
 
@@ -101,7 +104,7 @@ Now configure mpd (*/etc/mpd.conf*) to your liking and add the statements with "
 &nbsp;&nbsp;device&nbsp;"hw:1,0"<br>
 &nbsp;&nbsp;# Enable native DSD playback<br>
 &nbsp;&nbsp;dsd_native&nbsp;"yes"<br>
-&nbsp;&nbsp;# Select 32-bit DSD_U32_LE output format<br>
+&nbsp;&nbsp;# Select 32-bit DSD_U32_BE output format<br>
 &nbsp;&nbsp;dsd_native_type&nbsp;"2"<br>
 }*<br>
 
@@ -115,14 +118,14 @@ Example for a DSD64 file:
 
 cat /proc/asound/Audio/pcm0p/sub0/hw_params<br>
 access: MMAP_INTERLEAVED<br>
-format: DSD_U32_LE<br>
+format: DSD_U32_BE<br>
 subformat: STD<br>
 channels: 2<br>
 rate: 88200 (88200/1)<br>
 period_size: 11025<br>
 buffer_size: 44100<br>
 
-Notice the DSD_U32_LE sample format and rate of 88200.
+Notice the DSD_U32_BE sample format and rate of 88200.
 
 ### 2. Build the RPMs yourself
 
@@ -181,11 +184,11 @@ Build ALSA lib:
 Build MPD:
 - Make sure the needed dependencies are installed:
 
-  `sudo yum-builddep mpd-0.18.16-1.fc20.src.rpm`
+  `sudo yum-builddep mpd-0.18.16-2.fc20.src.rpm`
 
 - Install it (as normal user):
 
-  `sudo rpm -ivh mpd-0.18.16-1.fc20.src.rpm`
+  `sudo rpm -ivh mpd-0.18.16-2.fc20.src.rpm`
 
 - Build it:
 
