@@ -1,6 +1,11 @@
 Linux native DSD playback support
 =================================
 
+[28-nov-14]
+
+Support for Denon/Marantz HiFi devices with USB DACs added.
+Kernel updated and added kernel patches.
+
 [24-nov-14]
 
 DSD sampleformat for 32-bit samples changed to DSD_U32_BE.<br>
@@ -78,7 +83,7 @@ Steps:
 
 Start with the kernel:
 
-`sudo yum localinstall kernel-3.17.4-200.jk1.fc20.x86_64.rpm`
+`sudo yum localinstall kernel-3.17.4-200.jk6.fc20.x86_64.rpm`
 
 If needed, also install the *kernel-headers* and *kernel-devel* packages.
 
@@ -212,6 +217,8 @@ Check if the patches apply cleanly:<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-ctl-msg-quirk-v2.patch --dry-run`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-be-formats.patch --dry-run`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-switch-xmos-dsd-quirk-to-be.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-add-marantz-dsd-quirk.patch --dry-run`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-select-mode-quirk-v5.patch --dry-run`<br>
 
 If the patches apply cleanly, apply them.<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-u32-le-v5.patch`<br>
@@ -219,7 +226,8 @@ If the patches apply cleanly, apply them.<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-ctl-msg-quirk-v2.patch`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-add-dsd-be-formats.patch`<br>
 `patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-switch-xmos-dsd-quirk-to-be.patch`<br>
-
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-add-marantz-dsd-quirk.patch`<br>
+`patch -p1 < /path/to/SRPM/patches/kernel/alsa-usb-marantz-select-mode-quirk-v5.patch`<br>
 
 Compile and install the kernel as per instructions for your Linux distribution.
 

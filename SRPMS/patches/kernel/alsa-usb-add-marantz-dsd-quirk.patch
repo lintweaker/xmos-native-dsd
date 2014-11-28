@@ -1,0 +1,20 @@
+diff -uNrp linux-3.17.4-200.jk1.fc20.x86_64.org/sound/usb/quirks.c linux-3.17.4-200.jk1.fc20.x86_64.new/sound/usb/quirks.c
+--- linux-3.17.4-200.jk1.fc20.x86_64.org/sound/usb/quirks.c	2014-11-28 09:39:45.369309559 +0100
++++ linux-3.17.4-200.jk1.fc20.x86_64.new/sound/usb/quirks.c	2014-11-28 09:50:59.164573898 +0100
+@@ -1204,5 +1204,16 @@ u64 snd_usb_interface_dsd_format_quirks(
+ 		break;
+ 	}
+ 
++	/* Denon/Marantz devices with USB DAC functionality */
++	switch(chip->usb_id) {
++	case USB_ID(0x154e, 0x3005): /* Marantz HD-DAC1 */
++	case USB_ID(0x154e, 0x3006): /* Marantz SA-14S1 */
++		if (fp->altsetting == 2)
++			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
++		break;
++	default:
++		break;
++	}
++
+ 	return 0;
+ }

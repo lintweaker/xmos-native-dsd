@@ -31,7 +31,7 @@ Summary: The Linux kernel
 #
 # (Uncomment the '#' and both spaces below to set the buildid.)
 #
-%define buildid .jk1
+%define buildid .jk6
 ###################################################################
 
 # The buildid can also be specified on the rpmbuild command line
@@ -744,6 +744,8 @@ Patch31001: 0001-add-native-DSD-support-for-XMOS-based-DACs.patch
 Patch31002: alsa-usb-marantz-ctl-msg-quirk-v2.patch
 Patch31003: alsa-add-dsd-be-formats.patch
 Patch31004: alsa-usb-switch-xmos-dsd-quirk-to-be.patch
+Patch31005: alsa-usb-add-marantz-dsd-quirk.patch
+Patch31006: alsa-usb-marantz-select-mode-quirk-v5.patch
 
 # END OF PATCH DEFINITIONS
 
@@ -1454,6 +1456,8 @@ ApplyPatch 0001-add-native-DSD-support-for-XMOS-based-DACs.patch
 ApplyPatch alsa-usb-marantz-ctl-msg-quirk-v2.patch
 ApplyPatch alsa-add-dsd-be-formats.patch
 ApplyPatch alsa-usb-switch-xmos-dsd-quirk-to-be.patch
+ApplyPatch alsa-usb-add-marantz-dsd-quirk.patch
+ApplyPatch alsa-usb-marantz-select-mode-quirk-v5.patch
 
 %if 0%{?aarch64patches}
 ApplyPatch kernel-arm64.patch
@@ -2273,6 +2277,9 @@ fi
 #                 ||----w |
 #                 ||     ||
 %changelog
+* Fri Nov 28 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 3.17.4-200.jk6
+- Native DSD support for Denon/Marantz
+
 * Sun Nov 23 2014 Jurgen Kramer <gtmkramer@xs4all.nl> - 3.17.4-200.jk1
 - new DSD sample formats
 - Native DSD support for a few XMOS based DACs
