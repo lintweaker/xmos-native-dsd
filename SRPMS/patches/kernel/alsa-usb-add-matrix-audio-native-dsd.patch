@@ -1,0 +1,15 @@
+diff -uNrp linux-3.17.4-200.jk7.fc20.x86_64.org/sound/usb/quirks.c linux-3.17.4-200.jk7.fc20.x86_64.new/sound/usb/quirks.c
+--- linux-3.17.4-200.jk7.fc20.x86_64.org/sound/usb/quirks.c	2014-12-15 09:02:49.411082155 +0100
++++ linux-3.17.4-200.jk7.fc20.x86_64.new/sound/usb/quirks.c	2014-12-15 09:12:32.960439241 +0100
+@@ -1226,8 +1226,9 @@ u64 snd_usb_interface_dsd_format_quirks(
+ 
+ 	/* XMOS based USB DACs */
+ 	switch(chip->usb_id) {
+-	/* iFi Audio micro/nano iDSD */
+-	case USB_ID(0x20b1, 0x3008):
++	case USB_ID(0x20b1, 0x3008): /* iFi Audio micro/nano iDSD */
++	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
++	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;

@@ -3,7 +3,7 @@ Linux native DSD playback support
 
 [28-nov-14]
 
-Support for Denon/Marantz HiFi devices with USB DACs added.
+Support for Denon/Marantz HiFi devices with USB DACs added.<br>
 Kernel updated and added kernel patches.
 
 [24-nov-14]
@@ -21,6 +21,7 @@ support native DSD playback using a 32-bit sample format.
 The following device will be supported shortly:
 - Marantz SA-14S1
 - Marantz HD-DAC1
+
 Stay tuned.
 
 ## Native DSD support for XMOS based devices
