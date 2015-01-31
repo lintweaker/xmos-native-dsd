@@ -1,6 +1,9 @@
 Linux native DSD playback support
 =================================
 
+[31-jan-15]
+SRPMs and patches for Fedora 21.
+
 [28-nov-14]
 
 Support for Denon/Marantz HiFi devices with USB DACs added.<br>
