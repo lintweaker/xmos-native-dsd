@@ -1,0 +1,36 @@
+From e8e54811339b13d6df648bb48b35157d9fba352c Mon Sep 17 00:00:00 2001
+From: Takashi Iwai <tiwai@suse.de>
+Date: Mon, 11 Aug 2014 11:55:03 +0200
+Subject: [PATCH] pcm: Add missing signed and endianess definitions for DSD
+ formats
+
+Signed-off-by: Takashi Iwai <tiwai@suse.de>
+---
+ src/pcm/pcm_misc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/pcm/pcm_misc.c b/src/pcm/pcm_misc.c
+index 44bb89c..24d52f9 100644
+--- a/src/pcm/pcm_misc.c
++++ b/src/pcm/pcm_misc.c
+@@ -62,6 +62,8 @@ int snd_pcm_format_signed(snd_pcm_format_t format)
+ 	case SNDRV_PCM_FORMAT_U20_3BE:
+ 	case SNDRV_PCM_FORMAT_U18_3LE:
+ 	case SNDRV_PCM_FORMAT_U18_3BE:
++	case SNDRV_PCM_FORMAT_DSD_U8:
++	case SNDRV_PCM_FORMAT_DSD_U16_LE:
+ 		return 0;
+ 	default:
+ 		return -EINVAL;
+@@ -150,6 +152,8 @@ int snd_pcm_format_little_endian(snd_pcm_format_t format)
+ 	case SNDRV_PCM_FORMAT_U24_3BE:
+ 	case SNDRV_PCM_FORMAT_U20_3BE:
+ 	case SNDRV_PCM_FORMAT_U18_3BE:
++	case SNDRV_PCM_FORMAT_DSD_U8:
++	case SNDRV_PCM_FORMAT_DSD_U16_LE:
+ 		return 0;
+ 	default:
+ 		return -EINVAL;
+-- 
+1.9.3
+
