@@ -1,5 +1,7 @@
 Linux native DSD playback support
 =================================
+[21-feb-15]
+Update to kernel 3.18.7 for Fedora 21.
 
 [31-jan-15]
 SRPMs and patches for Fedora 21.
