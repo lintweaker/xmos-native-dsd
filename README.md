@@ -2,6 +2,7 @@ Linux native DSD playback support
 =================================
 [21-feb-15]
 Update to kernel 3.18.7 for Fedora 21.
+Support added for Denon DA300-USB (per kernel bugzilla #93261)
 
 [31-jan-15]
 SRPMs and patches for Fedora 21.

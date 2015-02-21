@@ -1,0 +1,27 @@
+diff -uNrp linux-3.18.7-200.jk1.fc21.x86_64/sound/usb/quirks.c linux-3.18.7-200.jk1.fc21.x86_64.new/sound/usb/quirks.c
+--- linux-3.18.7-200.jk1.fc21.x86_64/sound/usb/quirks.c	2015-02-21 12:49:51.141633626 +0100
++++ linux-3.18.7-200.jk1.fc21.x86_64.new/sound/usb/quirks.c	2015-02-21 12:53:31.677022429 +0100
+@@ -1112,6 +1112,7 @@ int snd_usb_select_mode_quirk(struct snd
+ 	int err;
+ 
+ 	switch (subs->stream->chip->usb_id) {
++	case USB_ID(0x154e, 0x1003): /* Denon DA300-USB */
+ 	case USB_ID(0x154e, 0x3005): /* Marantz HD-DAC1 */
+ 	case USB_ID(0x154e, 0x3006): /* Marantz SA-14S1 */
+ 
+@@ -1190,6 +1191,7 @@ void snd_usb_ctl_msg_quirk(struct usb_de
+ 	    (requesttype & USB_TYPE_MASK) == USB_TYPE_CLASS) {
+ 
+ 		switch (le16_to_cpu(dev->descriptor.idProduct)) {
++		case 0x1003: /* Denon DA-300USB */
+ 		case 0x3005: /* Marantz HD-DAC1 */
+ 		case 0x3006: /* Marantz SA-14S1 */
+ 			mdelay(20);
+@@ -1243,6 +1245,7 @@ u64 snd_usb_interface_dsd_format_quirks(
+ 
+ 	/* Denon/Marantz devices with USB DAC functionality */
+ 	switch (chip->usb_id) {
++	case USB_ID(0x154e, 0x1003): /* Denon DA300-USB */
+ 	case USB_ID(0x154e, 0x3005): /* Marantz HD-DAC1 */
+ 	case USB_ID(0x154e, 0x3006): /* Marantz SA-14S1 */
+ 		if (fp->altsetting == 2)
