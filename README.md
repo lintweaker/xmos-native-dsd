@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[28-mar-15]
+With kernel 3.19.1 and up all needed DSD support and native DSD device patches
+are included in the mainline kernel.
+
 [21-feb-15]
 
 Update to kernel 3.18.7 for Fedora 21.
