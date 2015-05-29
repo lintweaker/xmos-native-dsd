@@ -1,0 +1,31 @@
+From 5f449a846c525fa86276158be59f2da37bfd6b98 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Fri, 29 May 2015 08:39:38 +0200
+Subject: [PATCH] usb-audio: add native DSD support for JLsounds I2SoverUSB
+
+This patch adds native DSD support for the XMOS based JLsounds I2SoverUSB board
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 2917534..04c285c 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1266,8 +1266,9 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-	/* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+-	case USB_ID(0x20b1, 0x2009):
++
++	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
++	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.1.0
+

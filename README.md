@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[29-may-15]
+Added support for JLsounds I2SoverUSB
+
 [28-mar-15]
 With kernel 3.19.1 and up all needed DSD support and native DSD device patches
 are included in the mainline kernel.
