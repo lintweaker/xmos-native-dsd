@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[21-aug-15]
+Add support for Gustard DAC-X20U
+
 [29-may-15]
 Added support for JLsounds I2SoverUSB
 
