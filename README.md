@@ -1,12 +1,19 @@
 Linux native DSD playback support
 =================================
+[09-nov-15]
+
+Add support for Aune X1S and experimental support for Hegel HD12 DSD
+
 [21-aug-15]
+
 Add support for Gustard DAC-X20U
 
 [29-may-15]
+
 Added support for JLsounds I2SoverUSB
 
 [28-mar-15]
+
 With kernel 3.19.1 and up all needed DSD support and native DSD device patches
 are included in the mainline kernel.
 
