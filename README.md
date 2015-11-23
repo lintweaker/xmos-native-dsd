@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[23-nov-15]
+
+Hegel patch moved to archive. DSD support does not work.
+
 [09-nov-15]
 
 Add support for Aune X1S and experimental support for Hegel HD12 DSD
