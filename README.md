@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[25-nov-15]
+
+Experimental support for Oppo HA-1
+
 [23-nov-15]
 
 Hegel patch moved to archive. DSD support does not work.
