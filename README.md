@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[16-jan-16]
+
+Experimental support for Wyred 4 Sound DAC-2 DSD. Needs firmware update.
+Oppo HA-1 support will land in kernel 4.5.
+
 [25-nov-15]
 
 Experimental support for Oppo HA-1

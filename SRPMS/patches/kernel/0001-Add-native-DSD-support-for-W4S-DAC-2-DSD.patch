@@ -1,0 +1,27 @@
+From d88c511aaff44a19d2127bf4c679c29e4c0fb9bf Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sat, 16 Jan 2016 09:35:59 +0100
+Subject: [PATCH] Add native DSD support for W4S DAC-2 DSD
+
+This patch adds experimental support for Wyred 4 Sound DSD-2 DSD.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 23ea6d8..91b4143 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1266,6 +1266,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 
+ 	/* XMOS based USB DACs */
+ 	switch (chip->usb_id) {
++	case USB_UD(0x20b1, 0x0002): /* Wyred 4 Sound DAC-2 DSD */
+ 	case USB_ID(0x20b1, 0x3008): /* iFi Audio micro/nano iDSD */
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+-- 
+2.5.0
+
