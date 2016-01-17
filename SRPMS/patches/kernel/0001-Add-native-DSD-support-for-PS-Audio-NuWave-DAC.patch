@@ -1,0 +1,27 @@
+From acf9c801c2a930f46e74c7968e3ba3320fa3852b Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sun, 17 Jan 2016 08:50:13 +0100
+Subject: [PATCH] Add native DSD support for PS Audio NuWave DAC.
+
+This patch adds experimental support for the PS Audio NuWave DAC.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 91b4143..0df34a0 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1279,6 +1279,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+ 	case USB_ID(0x20b1, 0x3023): /* Aune X1S 32BIT/384 DSD DAC */
++	case USB_ID(0x2616, 0x0106): /* PS Audio NuWave DAC */
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.5.0
+

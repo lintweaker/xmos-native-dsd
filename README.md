@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[17-jan-17]
+
+Experimental support for the PS Audio NuWave DAC.
+
 [16-jan-16]
 
 Experimental support for Wyred 4 Sound DAC-2 DSD. Needs firmware update.
