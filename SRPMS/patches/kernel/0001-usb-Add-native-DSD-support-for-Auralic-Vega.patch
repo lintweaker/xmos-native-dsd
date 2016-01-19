@@ -1,0 +1,29 @@
+From c7d8c62051957d9ed303a4295d7f7f47ea8cba7a Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Tue, 19 Jan 2016 17:35:14 +0100
+Subject: [PATCH] usb: Add native DSD support for Auralic Vega
+
+This patch adds experimental support for the Auralic VEGA.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 0df34a0..c1df407 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1266,7 +1266,8 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 
+ 	/* XMOS based USB DACs */
+ 	switch (chip->usb_id) {
+-	case USB_UD(0x20b1, 0x0002): /* Wyred 4 Sound DAC-2 DSD */
++	case USB_ID(0x1511, 0x0037): /* AURALiC VEGA */
++	case USB_ID(0x20b1, 0x0002): /* Wyred 4 Sound DAC-2 DSD */
+ 	case USB_ID(0x20b1, 0x3008): /* iFi Audio micro/nano iDSD */
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+-- 
+2.5.0
+
