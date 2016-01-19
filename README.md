@@ -1,6 +1,13 @@
 Linux native DSD playback support
 =================================
-[17-jan-17]
+[19-jan-16]
+Experimental support for Auralice Vega. This patch also fixes a type in the code
+for the W4S DAC-2.
+
+New patch for the W4S DAC-2.
+
+
+[17-jan-16]
 
 Experimental support for the PS Audio NuWave DAC.
 
