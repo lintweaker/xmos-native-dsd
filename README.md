@@ -1,5 +1,11 @@
 Linux native DSD playback support
 =================================
+[29-jan-16]
+
+Support for PS Audio NuWave DAC confirmed to work.
+New patch for Oppo HA-2.
+
+
 [19-jan-16]
 
 Experimental support for Auralice Vega. This patch also fixes a type in the code
