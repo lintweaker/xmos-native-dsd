@@ -4,7 +4,7 @@ Linux native DSD playback support
 
 Added experimental support for:
 
-Mytek Brooklyn DAC and NuPrime DAC-10
+Mytek Brooklyn DAC and NuPrime DAC-10H
 
 
 [29-jan-16]
