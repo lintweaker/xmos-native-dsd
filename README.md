@@ -1,5 +1,13 @@
 Linux native DSD playback support
 =================================
+[13-feb-16]
+
+Added experimental support for:
+
+Mytek Brooklyn DAC
+NuPrime DAC-10
+
+
 [29-jan-16]
 
 Support for PS Audio NuWave DAC confirmed to work.
