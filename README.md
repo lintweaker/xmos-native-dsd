@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[04-mar-16]
+
+Added experimental support for the Amanero Combo384.
+Firmware 1099rc1 is needed (see Amanero site).
+
 [13-feb-16]
 
 Added experimental support for:
