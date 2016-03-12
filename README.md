@@ -1,9 +1,15 @@
 Linux native DSD playback support
 =================================
+[12-mar-16]
+
+Add experimental suppor for the Unison Research Unico CD Due.
+
+
 [04-mar-16]
 
 Added experimental support for the Amanero Combo384.
-Firmware 1099rc1 is needed (see Amanero site).
+Firmware 1099rc1 is needed (see Amanero site). [Update: waiting for firmware
+update, rc1 does not work correctly]
 
 [13-feb-16]
 

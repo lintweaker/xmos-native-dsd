@@ -1,0 +1,27 @@
+From b6d1fe353b57dba4a00a68d760f04fd633a9a308 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sat, 12 Mar 2016 14:22:00 +0100
+Subject: [PATCH] Add native DSD support for Unison Research Unico CD Due
+
+This patch add native DSD support for the Unison Research Unico CD Due.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 5b03296..ca96a57 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1298,6 +1298,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+ 	case USB_ID(0x20b1, 0x3023): /* Aune X1S 32BIT/384 DSD DAC */
++	case USB_ID(0x20b1, 0x302d): /* Unison Research Unico CD Due */
+ 	case USB_ID(0x2616, 0x0106): /* PS Audio NuWave DAC */
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+-- 
+2.5.0
+
