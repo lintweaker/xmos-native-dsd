@@ -2,7 +2,7 @@ Linux native DSD playback support
 =================================
 [11-apr-16]
 
-Add support for Matrix Audio Quattro II
+Add support for Matrix Audio Quattro II<br>
 Experimental support for NuPrime Audio DAC-9
 
 
