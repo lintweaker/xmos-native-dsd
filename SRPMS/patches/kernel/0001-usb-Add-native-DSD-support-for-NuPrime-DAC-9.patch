@@ -1,0 +1,27 @@
+From 17eea853486c428b0aa337f21e39628feab61e1a Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Mon, 11 Apr 2016 10:02:41 +0200
+Subject: [PATCH] usb: Add native DSD support for NuPrime DAC-9
+
+This patch adds native DSD support for the NuPrime Audio DAC-9.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 0adfd95..df9ce5b 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1307,6 +1307,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+ 
++	case USB_ID(0x16d0, 0x09db): /* NuPrime Audio DAC-9 */
+ 	case USB_ID(0x20b1, 0x000a): /* Gustard DAC-X20U */
+ 	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+-- 
+2.5.5
+
