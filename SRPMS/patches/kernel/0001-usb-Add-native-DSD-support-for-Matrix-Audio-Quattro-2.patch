@@ -1,0 +1,27 @@
+From 9d8b7633a7e06f307dca8a279a0e7242ae845a7d Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Mon, 11 Apr 2016 09:44:34 +0200
+Subject: [PATCH] usb: Add native DSD support for Matrix Audio Quattro II
+
+This patch add native DSD support for the Matrix Audio Quattro II.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 0adfd95..47206c5 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1302,6 +1302,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x3008): /* iFi Audio micro/nano iDSD */
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
++	case USB_ID(0x20b1, 0x302a): /* Matrix Audio Quattro II */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+-- 
+2.5.5
+
