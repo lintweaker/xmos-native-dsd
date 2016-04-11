@@ -1,5 +1,11 @@
 Linux native DSD playback support
 =================================
+[11-apr-16]
+
+Add support for Matrix Audio Quattro II
+Experimental support for NuPrime Audio DAC-9
+
+
 [30-mar-16]
 
 Updated patch for Amanero Combo384. Requires at least firmware 1099rc2
