@@ -2,7 +2,8 @@ Linux native DSD playback support
 =================================
 [29-apr-16]
 
-Add experimental support for TEAC UD-501.
+Add experimental support for TEAC UD-501 and support for the NuPrime Audio
+HD-AVP/AVA.
 
 
 [11-apr-16]
