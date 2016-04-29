@@ -1,0 +1,32 @@
+From 1e8c04a467034d1ebeafaa0a41ef5d41612dd85b Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Fri, 29 Apr 2016 11:34:44 +0200
+Subject: [PATCH] usb: Add native DSD support for TEAC UD-501
+
+This patch adds native DSD support for the TEAC UD-501.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 0adfd95..d7391dc 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1315,6 +1315,12 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
++
++	/* Other, non XMOS based DACs */
++	case USB_ID(0x0644, 0x8043): /* TEAC UD-501 */
++		if (fp->altsetting == 2)
++			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
++		break;
+ 	default:
+ 		break;
+ 	}
+-- 
+2.5.5
+

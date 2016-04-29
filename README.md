@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[29-apr-16]
+
+Add experimental support for TEAC UD-501.
+
+
 [11-apr-16]
 
 Add support for Matrix Audio Quattro II<br>
