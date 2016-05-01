@@ -1,0 +1,28 @@
+From fc00c72ea3d81ced6221244aed95b19db98b6f06 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sun, 1 May 2016 17:59:14 +0200
+Subject: [PATCH] usb: Add DSD alt setting quirk for TEAC UD-501
+
+This patch adds the TEAC UD-501 to the snd_usb_select_mode_quirk.
+Experimental, this patch could interfere with other quirks.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 0adfd95..ea16d71 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1151,6 +1151,7 @@ bool snd_usb_get_sample_rate_quirk(struct snd_usb_audio *chip)
+ static bool is_marantz_denon_dac(unsigned int id)
+ {
+ 	switch (id) {
++	case USB_ID(0x0644, 0x8043): /* TEAC UD-501 */
+ 	case USB_ID(0x154e, 0x1003): /* Denon DA-300USB */
+ 	case USB_ID(0x154e, 0x3005): /* Marantz HD-DAC1 */
+ 	case USB_ID(0x154e, 0x3006): /* Marantz SA-14S1 */
+-- 
+2.5.5
+
