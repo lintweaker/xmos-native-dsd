@@ -1,0 +1,27 @@
+From e9d11dc9c99f1c48b77d8c684de96652d0a83af3 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Mon, 16 May 2016 18:43:38 +0200
+Subject: [PATCH] usb: Add native DSD support for LH Labs Geek Out 1V5
+
+This patch adds native DSD support for the Geek Out 1V5.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 6adde45..7777e2e 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1306,6 +1306,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
++	case USB_ID(0x2522, 0x0007): /* LH Labs Geek Out 1V5 */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.5.5
+

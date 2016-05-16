@@ -1,8 +1,10 @@
 Linux native DSD playback support
 =================================
-[16-May-16]<br>
+[16-May-16]
+
 Add experimental support for:
 - LH Labs Geek Pulse X Inifinity 2V0
+- LH Labs Geek Out 1V5
 - NuPrime IDA-8
 - Eastern Electric MiniMax Tube DAC Supreme
 
