@@ -1,0 +1,27 @@
+From f46e7ecb1708d6a9ef97d434d99d23c0d6cfcbb3 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Mon, 16 May 2016 14:09:55 +0200
+Subject: [PATCH] usb: Add native DSD for Geek Pulse X Inifinity 2V0
+
+This patch adds native DSD support for the Geek Pulse X Infinity 2V0.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 6adde45..0c268ab 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1306,6 +1306,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
++	case USB_ID(0x2522, 0x0009): /* LH Labs Geek Pulse X Inifinity 2V0 */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.5.5
+
