@@ -1,6 +1,6 @@
 Linux native DSD playback support
 =================================
-[16-May-16]
+[16-May-16]<br>
 Add experimental support for:
 - LH Labs Geek Pulse X Inifinity 2V0
 - NuPrime IDA-8
