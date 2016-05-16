@@ -1,5 +1,15 @@
 Linux native DSD playback support
 =================================
+[16-May-16]
+Add experimental support for:
+- LH Labs Geek Pulse X Inifinity 2V0
+- NuPrime IDA-8
+- Eastern Electric MiniMax Tube DAC Supreme
+
+Moved TEAC-501 patch to archive. Patch was close but not sufficient.<br>
+Investigation not complete due to lack of (access to) a TEAC-501.
+
+
 [29-apr-16]
 
 Add experimental support for TEAC UD-501 and support for the NuPrime Audio
