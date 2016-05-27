@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[27-May-16]
+
+Update/extend native DSD support for Playback Design
+
+
 [16-May-16]
 
 Add experimental support for:

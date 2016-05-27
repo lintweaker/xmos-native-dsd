@@ -1,0 +1,44 @@
+From d851c07face7a26a89398fe9d406fc05d03082c3 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Fri, 27 May 2016 08:42:31 +0200
+Subject: [PATCH] usb: Update native DSD support for Playback Design
+
+This patch updates native DSD support for Playback Design based on information
+from the manufacturer. The previous DSD support is still there for devices not
+matching
+with the USB device IDs given by the manufacturer.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+
+diff -uNrp linux-4.4.8-300.jk2.fc23.x86_64.org/sound/usb/quirks.c linux-4.4.8-300.jk2.fc23.x86_64.new/sound/usb/quirks.c
+--- linux-4.4.8-300.jk2.fc23.x86_64.org/sound/usb/quirks.c	2016-05-27 09:04:55.908713131 +0200
++++ linux-4.4.8-300.jk2.fc23.x86_64.new/sound/usb/quirks.c	2016-05-27 09:11:31.060455599 +0200
+@@ -1276,8 +1276,27 @@ u64 snd_usb_interface_dsd_format_quirks(
+ 					struct audioformat *fp,
+ 					unsigned int sample_bytes)
+ {
++
++	unsigned int product_id = USB_ID_PRODUCT(chip->usb_id);
++
+ 	/* Playback Designs */
+ 	if (le16_to_cpu(chip->dev->descriptor.idVendor) == 0x23ba) {
++
++		if (USB_ID_VENDOR(chip->usb_id) == 0x23ba) {
++
++			if (product_id >= 0x0110 && product_id <= 0x011f && fp->altsetting == 2) {
++				return SNDRV_PCM_FMTBIT_DSD_U32_BE;
++			}
++
++			if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 2) {
++				return SNDRV_PCM_FMTBIT_DSD_U16_LE;
++			}
++
++			if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 3) {
++				return SNDRV_PCM_FMTBIT_DSD_U8;
++			}
++		}
++
+ 		switch (fp->altsetting) {
+ 		case 1:
+ 			fp->dsd_dop = true;
+Binary files linux-4.4.8-300.jk2.fc23.x86_64.org/.swp and linux-4.4.8-300.jk2.fc23.x86_64.new/.swp differ
