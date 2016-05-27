@@ -1,6 +1,6 @@
-From ad672d7a9939a1438ecd9c81577b90136a5862df Mon Sep 17 00:00:00 2001
+From 51d2d8dc63e98c2fae1819ab8cb74cdb7a973e33 Mon Sep 17 00:00:00 2001
 From: Jurgen Kramer <gtmkramer@xs4all.nl>
-Date: Fri, 27 May 2016 09:40:42 +0200
+Date: Fri, 27 May 2016 11:04:18 +0200
 Subject: [PATCH] usb: Update native DSD support for Playback Design
 
 This patch updates native DSD support for Playback Design based on information
@@ -9,14 +9,14 @@ matching with the USB device IDs given by the manufacturer.
 
 Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
 ---
- sound/usb/quirks.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ sound/usb/quirks.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
-index 6adde45..386ce1c 100644
+index 6adde45..0be4bfa 100644
 --- a/sound/usb/quirks.c
 +++ b/sound/usb/quirks.c
-@@ -1285,8 +1285,28 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+@@ -1285,8 +1285,25 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
  					struct audioformat *fp,
  					unsigned int sample_bytes)
  {
@@ -26,19 +26,16 @@ index 6adde45..386ce1c 100644
  	/* Playback Designs */
  	if (USB_ID_VENDOR(chip->usb_id) == 0x23ba) {
 +
-+		if (USB_ID_VENDOR(chip->usb_id) == 0x23ba) {
++		if (product_id >= 0x0110 && product_id <= 0x011f && fp->altsetting == 2) {
++			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
++		}
 +
-+			if (product_id >= 0x0110 && product_id <= 0x011f && fp->altsetting == 2) {
-+				return SNDRV_PCM_FMTBIT_DSD_U32_BE;
-+			}
++		if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 2) {
++			return SNDRV_PCM_FMTBIT_DSD_U16_LE;
++		}
 +
-+			if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 2) {
-+				return SNDRV_PCM_FMTBIT_DSD_U16_LE;
-+			}
-+
-+			if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 3) {
-+				return SNDRV_PCM_FMTBIT_DSD_U8;
-+			}
++		if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 3) {
++			return SNDRV_PCM_FMTBIT_DSD_U8;
 +		}
 +
 +
