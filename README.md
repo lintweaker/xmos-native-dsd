@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[12-Jun-16]
+
+Support for WaveIO USB Audio 2.0 cards.
+
+
 [05-Jun-16]
 
 Experimental support for Soekris 'dac1101'.
