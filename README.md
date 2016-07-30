@@ -3,6 +3,7 @@ Linux native DSD playback support
 [30-Jul-16]<br>
 <br>
 Add support for MSB Technology<br>
+Add support for LB Labs VI DAC Inifinity<br>
 <br>
 [12-Jun-16]
 

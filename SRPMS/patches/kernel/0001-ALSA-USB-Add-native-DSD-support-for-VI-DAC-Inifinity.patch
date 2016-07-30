@@ -1,0 +1,27 @@
+From 2712ad62db5acfad5057679722d23acedaf04ce5 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sat, 30 Jul 2016 11:25:07 +0200
+Subject: [PATCH] ALSA: USB: Add native DSD support for VI DAC Inifinity
+
+This patch adds native DSD support for LH Labs VI DAC Inifinity
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 6adde45..7c7c422 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1306,6 +1306,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
++	case USB_ID(0x2522, 0x0012): /* LH Labs VI DAC Infinity */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.5.5
+
