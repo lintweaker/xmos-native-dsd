@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[30-Jul-16]<br>
+<br>
+Add support for MSB Technology<br>
+<br>
 [12-Jun-16]
 
 Support for WaveIO USB Audio 2.0 cards.

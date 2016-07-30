@@ -1,0 +1,27 @@
+From 619e466525e54e56ddcf13187af211501a2ab81b Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sat, 30 Jul 2016 11:15:35 +0200
+Subject: [PATCH] ALSA: USB: Add native DSD support for MSB Technology
+
+This patch adds native DSD support for MSB Technology.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 6adde45..366dea2 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1315,6 +1315,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+ 	case USB_ID(0x20b1, 0x3023): /* Aune X1S 32BIT/384 DSD DAC */
+ 	case USB_ID(0x2616, 0x0106): /* PS Audio NuWave DAC */
++	case USB_ID(0x6b42, 0x0042): /* MSB Technology */
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.5.5
+
