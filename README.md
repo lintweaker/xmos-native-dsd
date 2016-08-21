@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[21-Aug-16]<br>
+<br>
+Add support for Holo Springs Level 3 R2R DAC<br>
+<br>
 [30-Jul-16]<br>
 <br>
 Add support for MSB Technology<br>
