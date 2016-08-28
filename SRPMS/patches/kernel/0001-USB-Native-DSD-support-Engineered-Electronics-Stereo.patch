@@ -1,0 +1,28 @@
+From d5778169cfa5461d1c0580cc824856a6689aebcb Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sun, 28 Aug 2016 09:39:11 +0200
+Subject: [PATCH] USB: Native DSD support - Engineered Electronics Stereo
+ Playback Interface
+
+This patch adds native DSD support for the Engineered Electronics Stereo Playback Interface
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index d47d927..9e35fab 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1321,6 +1321,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x000a): /* Gustard DAC-X20U */
+ 	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
++	case USB_ID(0x20b1, 0x300f): /* Engineered Electronics Stereo Playback Interface */
+ 	case USB_ID(0x20b1, 0x3023): /* Aune X1S 32BIT/384 DSD DAC */
+ 	case USB_ID(0x2616, 0x0106): /* PS Audio NuWave DAC */
+ 		if (fp->altsetting == 3)
+-- 
+2.5.5
+

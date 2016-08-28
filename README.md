@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[28-Aug-16]<br>
+<br>
+Add support for the Engineered Electronics Stereo Playback Interface<br>
+<br>
 [21-Aug-16]<br>
 <br>
 Add support for Holo Springs Level 3 R2R DAC<br>
