@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[30-Aug-16]<br>
+<br>
+Add support for Bryston BDA3<br>
+<br>
 [28-Aug-16]<br>
 <br>
 Add support for the Engineered Electronics Stereo Playback Interface<br>
