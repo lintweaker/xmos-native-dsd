@@ -1,0 +1,27 @@
+From 1a9b8999f676841c92bef72a5b6b5db25b267f49 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sat, 22 Oct 2016 09:36:13 +0200
+Subject: [PATCH] usb: native DSD support for Singxer F-1
+
+This patch adds native DSD support for the Singxer F-1 converter board
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 2782155..29e73eb 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1323,6 +1323,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
+ 	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
+ 	case USB_ID(0x20b1, 0x3023): /* Aune X1S 32BIT/384 DSD DAC */
++	case USB_ID(0x2bb1, 0x3086): /* Singxer F-1 converter board */
+ 	case USB_ID(0x2616, 0x0106): /* PS Audio NuWave DAC */
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+-- 
+2.5.5
+

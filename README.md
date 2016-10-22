@@ -3,6 +3,7 @@ Linux native DSD playback support
 [22-Oct-16]<br>
 <br>
 Add support for the CH Precision DAC<br>
+Add support for the Singxer F-1 converter board<br>
 <br>
 [30-Aug-16]<br>
 <br>
