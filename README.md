@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[30-Nov-16]<br>
+<br>
+Add seperate patch for Amanero Combo384 BE sample format support
+Rename original Amanero patch<br>
+<br>
 [22-Oct-16]<br>
 <br>
 Add support for the CH Precision C1 DAC<br>

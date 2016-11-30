@@ -1,0 +1,33 @@
+From 9832280368b6198116b8a0b149a4b86d3f542d63 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Wed, 30 Mar 2016 14:22:24 +0200
+Subject: [PATCH] usb: Add native DSD support for Amanero Combo384
+
+This patch adds native DSD support for the Amanero Combo384.
+It uses the default VID/PID (16d0:071a) and requires at least firmware 1099be
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index fb62bce..0749e2b 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1309,6 +1309,12 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 		if (fp->altsetting == 3)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
++
++	/* DACs using LE sample format */
++	case USB_ID(0x16d0, 0x071a): /* Amanero Combo384 */
++		if (fp->altsetting == 2)
++			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
++		break;
+ 	default:
+ 		break;
+ 	}
+-- 
+2.5.5
+
