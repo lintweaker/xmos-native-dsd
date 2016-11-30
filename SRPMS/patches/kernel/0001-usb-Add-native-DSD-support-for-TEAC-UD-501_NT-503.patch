@@ -1,0 +1,71 @@
+diff --git a/a/sound/usb/quirks.c b/b/sound/usb/quirks.c
+index 182b439..901e64c 100644
+--- a/a/sound/usb/quirks.c
++++ b/b/sound/usb/quirks.c
+@@ -1167,6 +1167,18 @@ static bool is_marantz_denon_dac(unsigned int id)
+ 	return false;
+ }
+ 
++/* TEAC USB DACs need a vendor cmd to switch
++ * between PCM and native DSD mode
++ */
++static bool is_teac_dac(unsigned int id)
++{
++	switch (id) {
++	case USB_ID(0x0644, 0x8043): /* TEAC UD-501/UD-503/NT-503 */
++		return true;
++	}
++	return false;
++}
++
+ int snd_usb_select_mode_quirk(struct snd_usb_substream *subs,
+ 			      struct audioformat *fmt)
+ {
+@@ -1194,6 +1206,35 @@ int snd_usb_select_mode_quirk(struct snd_usb_substream *subs,
+ 			break;
+ 		}
+ 		mdelay(20);
++	} else if (is_teac_dac(subs->stream->chip->usb_id)) {
++		/* First switch to alt set 0, otherwise the mode switch cmd
++		 * will not be accepted by the DAC
++		 */
++		err = usb_set_interface(dev, fmt->iface, 0);
++		if (err < 0)
++			return err;
++
++		mdelay(20); /* Delay needed after setting the interface */
++
++		switch (fmt->altsetting) {
++		case 3: /* DSD mode requested */
++			err = snd_usb_ctl_msg(dev, usb_sndctrlpipe(dev, 0), 0,
++					      USB_DIR_OUT|USB_TYPE_VENDOR|USB_RECIP_INTERFACE,
++					      1, 1, NULL, 0);
++			if (err < 0)
++				return err;
++			break;
++
++		case 2: /* PCM or DOP mode requested */
++		case 1: /* PCM or DOP mode requested */
++			err = snd_usb_ctl_msg(dev, usb_sndctrlpipe(dev, 0), 0,
++					      USB_DIR_OUT|USB_TYPE_VENDOR|USB_RECIP_INTERFACE,
++					      0, 1, NULL, 0);
++			if (err < 0)
++				return err;
++			break;
++		}
++		mdelay(20);
+ 	}
+ 	return 0;
+ }
+@@ -1326,5 +1367,11 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 	}
+ 
++	/* TEAC devices with USB DAC functionality */
++	if (is_teac_dac(chip->usb_id)) {
++		if (fp->altsetting == 3)
++			return SNDRV_PCM_FMTBIT_DSD_U32_LE;
++	}
++
+ 	return 0;
+ }
