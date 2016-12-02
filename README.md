@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[02-Dec-16]<br>
+<br>
+Add support for Audiolab M-DAC+<br>
+<br>
 [30-Nov-16]<br>
 <br>
 Add seperate patch for Amanero Combo384 BE sample format support
