@@ -64,7 +64,7 @@ index 182b439..901e64c 100644
 +	/* TEAC devices with USB DAC functionality */
 +	if (is_teac_dac(chip->usb_id)) {
 +		if (fp->altsetting == 3)
-+			return SNDRV_PCM_FMTBIT_DSD_U32_LE;
++			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
 +	}
 +
  	return 0;
