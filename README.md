@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[23-Jan-17]<br>
+<br>
+Fix Singxer F-1 converter board patch<br>
+<br>
 [02-Dec-16]<br>
 <br>
 Add support for Audiolab M-DAC+<br>
