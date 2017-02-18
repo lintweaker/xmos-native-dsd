@@ -3,6 +3,7 @@ Linux native DSD playback support
 [18-Feb-17]<br>
 <br>
 Add support for HDTA Serenade DSD<br>
+Add support for Mutec MC3+ USB<br>
 <br>
 [23-Jan-17]<br>
 <br>
