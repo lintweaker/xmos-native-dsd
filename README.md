@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[18-Feb-17]<br>
+<br>
+Add support for HDTA Serenade DSD<br>
+<br>
 [23-Jan-17]<br>
 <br>
 Fix Singxer F-1 converter board patch<br>
