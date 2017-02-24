@@ -1,5 +1,10 @@
 Linux native DSD playback support
 =================================
+[24-Feb-17]<br>
+<br>
+Remove old MPD 0.18 SRPM
+Add MPD 0.19.19 source RPM with native DSD patch included<br>
+<br>
 [18-Feb-17]<br>
 <br>
 Add support for HDTA Serenade DSD<br>
