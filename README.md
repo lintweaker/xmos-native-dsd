@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[12-Mar-17]<br>
+<br>
+Add Denafrips DAC<br>
+<br>
 [24-Feb-17]<br>
 <br>
 Remove old MPD 0.18 SRPM<br>
