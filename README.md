@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[24-Mar-17]<br>
+<br>
+Add Furutech ADL Stratos<br>
+<br>
 [12-Mar-17]<br>
 <br>
 Add Denafrips DAC<br>
