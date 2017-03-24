@@ -3,7 +3,7 @@ From: Jurgen Kramer <gtmkramer@xs4all.nl>
 Date: Sun, 12 Mar 2017 16:31:54 +0100
 Subject: [PATCH] Add native DSD support for Denafrips DAC
 
-This patch adds native DSD support for the Denafrips DAC.
+This patch adds native DSD support for the Denafrips Ares DAC.
 
 Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
 ---
