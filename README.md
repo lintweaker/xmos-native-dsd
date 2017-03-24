@@ -6,7 +6,7 @@ Add Furutech ADL Stratos<br>
 <br>
 [12-Mar-17]<br>
 <br>
-Add Denafrips DAC<br>
+Add Denafrips Ares DAC<br>
 <br>
 [24-Feb-17]<br>
 <br>
