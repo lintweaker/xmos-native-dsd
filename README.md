@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[10-May-17]<br>
+<br>
+Add Oppo Sonica WiFi speaker<br>
+<br>
 [24-Mar-17]<br>
 <br>
 Add Furutech ADL Stratos<br>

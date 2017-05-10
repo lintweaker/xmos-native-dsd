@@ -1,0 +1,27 @@
+From cda2f2cd4b2a05deed15676b36b462554a749a96 Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Wed, 10 May 2017 17:32:32 +0200
+Subject: [PATCH] Native DSD support for Oppo Sonica
+
+This patch add native DSD support for the Oppo Sonica Wifi speaker.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index 01eff6c..c4933d2 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1348,6 +1348,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
++	case USB_ID(0x22d9, 0x0436): /* OPPO Sonica */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.9.3
+
