@@ -1,5 +1,9 @@
 Linux native DSD playback support
 =================================
+[26-May-17]<br>
+<br>
+Add W4S DAC-2v2SE<br>
+<br>
 [10-May-17]<br>
 <br>
 Add Oppo Sonica WiFi speaker<br>
