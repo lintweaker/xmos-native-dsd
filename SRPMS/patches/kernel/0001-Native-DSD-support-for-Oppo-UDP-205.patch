@@ -1,0 +1,27 @@
+From 09cfc16aa531df6f351e6b67ebeeb98543ad52dc Mon Sep 17 00:00:00 2001
+From: Jurgen Kramer <gtmkramer@xs4all.nl>
+Date: Sun, 11 Jun 2017 08:12:46 +0200
+Subject: [PATCH] Native DSD support for Oppo UDP-205
+
+This patch adds native DSD suppor for the Oppo UDP-205.
+
+Signed-off-by: Jurgen Kramer <gtmkramer@xs4all.nl>
+---
+ sound/usb/quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/usb/quirks.c b/sound/usb/quirks.c
+index d7b0b0a..c2def3e 100644
+--- a/sound/usb/quirks.c
++++ b/sound/usb/quirks.c
+@@ -1348,6 +1348,7 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
+ 	case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+ 	case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+ 	case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
++	case USB_ID(0x22d9, 0x0461): /* OPPO UDP-205 */
+ 		if (fp->altsetting == 2)
+ 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+ 		break;
+-- 
+2.9.4
+
