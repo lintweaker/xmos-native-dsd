@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[07-Jul-17]<br>
+Update DSD patches MPD SRPM to MPD 0.19.21<br>
+<br>
 [11-Jun-17]<br>
 <br>
 Add Oppo UDP-205<br>
