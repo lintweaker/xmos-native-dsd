@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[10-Oct-17]<br>
+Add Matrix Audio X-SPDIF 2<br>
+<br>
 [07-Jul-17]<br>
 Update DSD patches MPD SRPM to MPD 0.19.21<br>
 <br>
