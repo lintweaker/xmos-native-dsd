@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[08-Dec-17]<br>
+Add Armature Hectate board<br>
+<br>
 [10-Oct-17]<br>
 Add Matrix Audio X-SPDIF 2<br>
 <br>
