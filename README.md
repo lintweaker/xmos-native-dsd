@@ -1,5 +1,8 @@
 Linux native DSD playback support
 =================================
+[17-Dec-17]<br>
+Add Mytek Manhattan<br>
+<br>
 [08-Dec-17]<br>
 Add Armature Hectate board<br>
 <br>
