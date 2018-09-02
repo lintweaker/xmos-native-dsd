@@ -16,7 +16,7 @@ index 7af23f3..b66c56f 100644
  			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
  		break;
  
-+	case USB_ID(0x16b0, 0x06b2): /* NuPrime DAC-10 */
++	case USB_ID(0x16d0, 0x06b2): /* NuPrime DAC-10 */
  	case USB_ID(0x20b1, 0x000a): /* Gustard DAC-X20U */
  	case USB_ID(0x20b1, 0x2009): /* DIYINHK DSD DXD 384kHz USB to I2S/DSD */
  	case USB_ID(0x20b1, 0x2023): /* JLsounds I2SoverUSB */
